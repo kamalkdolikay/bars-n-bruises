@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bt30n2e3pnibn"]
+[gd_scene load_steps=3 format=3 uid="uid://bt30n2e3pnibn"]
 
 [ext_resource type="Texture2D" uid="uid://duf8c32vvbslj" path="res://assets/preview_stage.png" id="1_nnsk1"]
+[ext_resource type="PackedScene" uid="uid://up2oitrde620" path="res://scenes/player.tscn" id="2_rwgxs"]
 
 [node name="World" type="Node2D"]
 
@@ -12,3 +13,6 @@ centered = false
 position = Vector2(-1, 109)
 texture = ExtResource("1_nnsk1")
 centered = false
+
+[node name="Player" parent="." instance=ExtResource("2_rwgxs")]
+position = Vector2(230, 301)
