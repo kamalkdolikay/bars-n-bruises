@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://up2oitrde620"]
+
+[ext_resource type="Texture2D" uid="uid://chi2u85rf4ru3" path="res://assets/Bancho_Idle.png" id="1_3vyb7"]
+
+[node name="Player" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_3vyb7")
+centered = false
+offset = Vector2(-50, -100)
+hframes = 7
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
