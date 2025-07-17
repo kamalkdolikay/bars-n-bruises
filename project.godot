@@ -23,6 +23,7 @@ window/size/window_width_override=1000
 window/size/window_height_override=805
 window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
+window/canvas_textures/default_texture_filter=0
 
 [rendering]
 
@@ -32,3 +33,4 @@ renderer/rendering_method.mobile="gl_compatibility"
 textures/size/window_height_override=805
 textures/size/window_width_override=1000
 textures/size/viewport_width=500
+textures/size/viewport_height=350
