@@ -1,9 +1,12 @@
 class_name PlayerCharacter
 extends CharacterBody2D
 
+@onready var player: PlayerCharacter = $"."
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @export var sprite: Sprite2D
 @export var move_speed: float = 50.0
+
+
 
 func get_movement_direction() -> Vector2:
 	var direction := Vector2.ZERO
@@ -16,3 +19,9 @@ func get_movement_direction() -> Vector2:
 	if Input.is_action_pressed("ui_down"):
 		direction.y = 1
 	return direction
+	
+func get_sprite_position(direction: Vector2) -> void:
+	if direction.x > 0:
+		player.sprite.flip_h = false
+	elif direction.x < 0:
+		player.sprite.flip_h = true
