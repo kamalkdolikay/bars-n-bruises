@@ -5,8 +5,12 @@ extends CharacterBody2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @export var sprite: Sprite2D
 @export var move_speed: float = 50.0
-
-
+@export var input_transitions: Dictionary = {
+	"ui_accept": "Jump",
+	"attack1": "Attack1",
+	"attack2": "Attack2",
+	"attack3": "Attack3",
+}
 
 func get_movement_direction() -> Vector2:
 	var direction := Vector2.ZERO

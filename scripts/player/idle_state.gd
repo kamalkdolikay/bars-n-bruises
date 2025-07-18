@@ -7,9 +7,14 @@ func enter() -> void:
 	player.animation_player.play("idle")
 	
 func update(_delta: float) -> void:
-	if Input.is_action_just_pressed("ui_accept"):
-		transition.emit("Jump")
-	elif player.get_movement_direction() != Vector2.ZERO:
+	# Check configured input actions for state transitions
+	for input_action in player.input_transitions.keys():
+		if Input.is_action_just_pressed(input_action):
+			transition.emit(player.input_transitions[input_action])
+			return
+	
+	# Check for movement to transition to Walk
+	if player.get_movement_direction() != Vector2.ZERO:
 		transition.emit("Walk")
 
 func exit() -> void:

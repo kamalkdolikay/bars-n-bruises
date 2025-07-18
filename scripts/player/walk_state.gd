@@ -19,10 +19,14 @@ func update(_delta: float):
 	player.velocity = direction.normalized() * player.move_speed
 	player.move_and_slide()
 	
-	# Transition to Idle if no effective movement
-	if Input.is_action_just_pressed("ui_accept"):
-		transition.emit("Jump")
-	elif direction == Vector2.ZERO:
+	# Check configured input actions for state transitions
+	for input_action in player.input_transitions.keys():
+		if Input.is_action_just_pressed(input_action):
+			transition.emit(player.input_transitions[input_action])
+			return
+	
+	# Transition to Idle if no movement
+	if direction == Vector2.ZERO:
 		transition.emit("Idle")
 
 func exit() -> void:

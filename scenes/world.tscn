@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bt30n2e3pnibn"]
 
 [ext_resource type="Texture2D" uid="uid://duf8c32vvbslj" path="res://assets/preview_stage.png" id="1_nnsk1"]
-[ext_resource type="PackedScene" uid="uid://up2oitrde620" path="res://scenes/player.tscn" id="2_rwgxs"]
+[ext_resource type="PackedScene" uid="uid://gp0muuff0noy" path="res://scenes/player.tscn" id="2_rwgxs"]
 
 [node name="World" type="Node2D"]
 
