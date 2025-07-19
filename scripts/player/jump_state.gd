@@ -20,12 +20,11 @@ var jump_state := {
 }
 
 func enter() -> void:
-	# Connect the animation_finished signal if not already connected
 	if not player.animation_player.is_connected("animation_finished", Callable(self, "_on_animation_finished")):
 		player.animation_player.connect("animation_finished", Callable(self, "_on_animation_finished"))
 
 	player.animation_player.play(jump_state[State.TAKEOFF])
-	initial_y = player.position.y # Store initial y-position for relative height calculations
+	initial_y = player.position.y
 
 func update(delta: float) -> void:
 	if state != null:
@@ -33,10 +32,9 @@ func update(delta: float) -> void:
 		
 	handle_air_time(delta)
 	var direction = player.get_movement_direction()
-	player.velocity.x = direction.x * player.move_speed # Update horizontal velocity based on input
-	player.position.y = initial_y - height # Apply vertical position (relative to initial y)
+	player.velocity.x = direction.x * player.move_speed
+	player.position.y = initial_y - height
 	
-	# Flip sprite based on horizontal direction
 	player.get_sprite_position(direction)
 	player.move_and_slide()
 

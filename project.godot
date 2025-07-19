@@ -43,6 +43,14 @@ attack3={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_2="Player"
+2d_physics/layer_4="Destructibles"
+2d_physics/layer_5="PlayerDamageReceiver"
+2d_physics/layer_6="EnemyDamageReceiver"
+2d_physics/layer_7="DestructibleDamageReceiver"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

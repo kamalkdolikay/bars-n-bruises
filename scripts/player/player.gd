@@ -2,7 +2,9 @@ class_name PlayerCharacter
 extends CharacterBody2D
 
 @onready var player: PlayerCharacter = $"."
+@onready var damage_emitter: Area2D = $DamageEmitter
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+
 @export var sprite: Sprite2D
 @export var move_speed: float = 50.0
 @export var input_transitions: Dictionary = {
@@ -11,6 +13,9 @@ extends CharacterBody2D
 	"attack2": "Attack2",
 	"attack3": "Attack3",
 }
+
+func _ready() -> void:
+	damage_emitter.area_entered.connect(on_emit_damage)
 
 func get_movement_direction() -> Vector2:
 	var direction := Vector2.ZERO
@@ -27,5 +32,11 @@ func get_movement_direction() -> Vector2:
 func get_sprite_position(direction: Vector2) -> void:
 	if direction.x > 0:
 		player.sprite.flip_h = false
+		damage_emitter.scale.x = 1
 	elif direction.x < 0:
 		player.sprite.flip_h = true
+		damage_emitter.scale.x = -1
+
+func on_emit_damage(damage_receiver: DamageReceiver) -> void:
+	var direction := Vector2.LEFT if damage_receiver.global_position.x < global_position.x else Vector2.RIGHT
+	damage_receiver.barrel_damage_receiver.emit(direction)

@@ -10,10 +10,7 @@ func update(_delta: float):
 	var direction := player.get_movement_direction()
 	
 	# Update sprite flip
-	if direction.x > 0:
-		player.sprite.flip_h = false
-	elif direction.x < 0:
-		player.sprite.flip_h = true
+	player.get_sprite_position(direction)
 	
 	# Apply movement
 	player.velocity = direction.normalized() * player.move_speed
