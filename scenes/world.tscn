@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bt30n2e3pnibn"]
+[gd_scene load_steps=5 format=3 uid="uid://bt30n2e3pnibn"]
 
 [ext_resource type="Texture2D" uid="uid://duf8c32vvbslj" path="res://assets/preview_stage.png" id="1_nnsk1"]
 [ext_resource type="PackedScene" uid="uid://gp0muuff0noy" path="res://scenes/character/player.tscn" id="2_rwgxs"]
 [ext_resource type="PackedScene" uid="uid://dwvtud1w4ogdb" path="res://scenes/props/barrel.tscn" id="3_4wyf3"]
+[ext_resource type="PackedScene" uid="uid://70qajdmwtpsw" path="res://scenes/character/player2.tscn" id="4_k0juu"]
 
 [node name="World" type="Node2D"]
 
@@ -23,3 +24,6 @@ position = Vector2(230, 301)
 
 [node name="Barrel" parent="ActorsContainer" instance=ExtResource("3_4wyf3")]
 position = Vector2(300, 296)
+
+[node name="Player2" parent="ActorsContainer" instance=ExtResource("4_k0juu")]
+position = Vector2(297, 251)
