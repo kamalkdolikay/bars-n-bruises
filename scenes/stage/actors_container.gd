@@ -6,7 +6,11 @@
 extends Node2D
 
 # Constants
-const CHICKEN_PREFAB := preload("res://scenes/props/chicken.tscn")
+const COLLECTIBLE_MAP := {
+	Collectible.Type.FOOD1: preload("res://scenes/props/chicken.tscn"),
+	Collectible.Type.FOOD2: preload("res://scenes/props/chicken_2.tscn"),
+	Collectible.Type.FOOD3: preload("res://scenes/props/chicken_3.tscn"),
+}
 
 # Signals and Connections
 func _ready() -> void:
@@ -15,14 +19,14 @@ func _ready() -> void:
 # Public Methods
 # on_spawn_collectible: Handles the spawning of a collectible at the given global position.
 # @param collectible_global_position: The global position where the collectible should spawn.
-func on_spawn_collectible(collectible_global_position: Vector2) -> void:
-	call_deferred("_deferred_spawn_collectible", collectible_global_position)
+func on_spawn_collectible(collectible_global_position: Vector2, collectible_type: Collectible.Type) -> void:
+	call_deferred("_deferred_spawn_collectible", collectible_global_position, collectible_type)
 
 # Private Methods
 # _deferred_spawn_collectible: Deferred method to instantiate and add a chicken collectible to the scene.
 # @param collectible_global_position: The global position where the collectible should spawn.
-func _deferred_spawn_collectible(collectible_global_position: Vector2) -> void:
-	var chicken := CHICKEN_PREFAB.instantiate()
-	chicken.state = Collectible.State.FALL  # Use enum from Collectible class
-	chicken.global_position = collectible_global_position
-	add_child(chicken)
+func _deferred_spawn_collectible(collectible_global_position: Vector2, collectible_type: Collectible.Type) -> void:
+	var collectible: Collectible = COLLECTIBLE_MAP[collectible_type].instantiate()
+	collectible.state = Collectible.State.FALL  # Use enum from Collectible class
+	collectible.global_position = collectible_global_position
+	add_child(collectible)

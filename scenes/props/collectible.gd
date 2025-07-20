@@ -9,6 +9,7 @@ extends Area2D
 
 const GRAVITY := 600.0
 enum State { FALL, GROUNDED, FLY }
+enum Type { FOOD1, FOOD2, FOOD3 }
 
 var collectible_state := {
 	State.FALL: "fall",
