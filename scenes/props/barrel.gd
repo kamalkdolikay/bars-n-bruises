@@ -1,6 +1,8 @@
 extends StaticBody2D
 
 @export var knockback_intensity: float
+@export var collectible_type: Collectible.Type
+
 @onready var damage_receiver: DamageReceiver = $DamageReceiver
 @onready var sprite: Sprite2D = $Sprite2D
 
@@ -31,7 +33,7 @@ func on_receive_damage(direction: Vector2) -> void:
 			sprite.frame = 1
 			state = State.DAMAGED
 			apply_knockback(direction)
-			EntityManager.spawn_collecible.emit(global_position)
+			EntityManager.spawn_collecible.emit(global_position, collectible_type)
 		State.DESTROY:
 			should_destroy = true
 			apply_knockback(direction)
