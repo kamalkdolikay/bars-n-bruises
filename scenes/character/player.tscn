@@ -797,7 +797,7 @@ size = Vector2(15, 10)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("sprite")]
 collision_layer = 2
-collision_mask = 8
+collision_mask = 9
 script = ExtResource("1_g2els")
 sprite = NodePath("Sprite2D")
 
@@ -877,6 +877,7 @@ debug_color = Color(0.861707, 0.173194, 0.773309, 0.42)
 [node name="DamageReceiver" type="Area2D" parent="."]
 collision_layer = 16
 collision_mask = 0
+monitoring = false
 script = ExtResource("17_jb4us")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageReceiver"]
