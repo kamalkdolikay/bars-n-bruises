@@ -31,6 +31,7 @@ func on_receive_damage(direction: Vector2) -> void:
 			sprite.frame = 1
 			state = State.DAMAGED
 			apply_knockback(direction)
+			EntityManager.spawn_collecible.emit(global_position)
 		State.DESTROY:
 			should_destroy = true
 			apply_knockback(direction)

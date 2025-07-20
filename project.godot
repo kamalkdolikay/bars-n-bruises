@@ -15,6 +15,10 @@ run/main_scene="uid://bt30n2e3pnibn"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+EntityManager="*res://utils/entity_manager.gd"
+
 [display]
 
 window/size/viewport_width=500
@@ -45,12 +49,15 @@ attack3={
 
 [layer_names]
 
+2d_physics/layer_1="World"
 2d_physics/layer_2="Player"
 2d_physics/layer_3="Enemy"
 2d_physics/layer_4="Destructibles"
 2d_physics/layer_5="PlayerDamageReceiver"
 2d_physics/layer_6="EnemyDamageReceiver"
 2d_physics/layer_7="DestructibleDamageReceiver"
+2d_physics/layer_8="InvisibleWalls"
+2d_physics/layer_9="Collectibles"
 
 [rendering]
 
