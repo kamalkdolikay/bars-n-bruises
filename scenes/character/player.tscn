@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://gp0muuff0noy"]
+[gd_scene load_steps=40 format=3 uid="uid://gp0muuff0noy"]
 
 [ext_resource type="Texture2D" uid="uid://chi2u85rf4ru3" path="res://assets/player/Bancho_Idle.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://c6ajiixwkldx8" path="res://scripts/player/player.gd" id="1_g2els"]
@@ -790,7 +790,10 @@ height = 42.0
 size = Vector2(36, 13)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ba010"]
-size = Vector2(20, 50)
+size = Vector2(13, 41.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2smwq"]
+size = Vector2(15, 10)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("sprite")]
 collision_layer = 2
@@ -811,7 +814,7 @@ libraries = {
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-7, -9)
+position = Vector2(-8, -7)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_oprun")
 
@@ -877,6 +880,16 @@ collision_mask = 0
 script = ExtResource("17_jb4us")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageReceiver"]
-position = Vector2(-9, -51)
+position = Vector2(-8, -52)
 shape = SubResource("RectangleShape2D_ba010")
 debug_color = Color(0.568168, 0.556813, 3.85046e-07, 0.42)
+
+[node name="CollectibleSensor" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 256
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollectibleSensor"]
+position = Vector2(-8, -7)
+shape = SubResource("RectangleShape2D_2smwq")
+debug_color = Color(0.319573, 0.49116, 1, 0.42)

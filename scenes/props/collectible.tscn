@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://sfcweu5ooofm" path="res://scenes/props/collectible.gd" id="1_drq62"]
 
 [node name="Collectible" type="Area2D"]
-collision_layer = 256
-collision_mask = 2
+collision_layer = 0
+collision_mask = 0
 monitoring = false
 monitorable = false
 script = ExtResource("1_drq62")
