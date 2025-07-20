@@ -9,6 +9,8 @@ signal hurt_emitter
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var damage_receiver: PlayerDamageReceiver = $DamageReceiver
 @onready var collectible_sensor: Area2D = $CollectibleSensor
+@onready var player_collision_shape: CollisionShape2D = $CollisionShape2D
+@onready var collectible_collision_shape: CollisionShape2D = $CollectibleSensor/CollisionShape2D
 
 @export var sprite: Sprite2D
 @export var move_speed: float = 50.0
@@ -19,10 +21,15 @@ signal hurt_emitter
 	"attack3": "Attack3",
 }
 
+var player_sensor_position
+var collectible_sensor_position
+
 func _ready() -> void:
 	damage_emitter.area_entered.connect(on_emit_damage)
 	damage_receiver.player_damage_receiver.connect(on_receive_damage)
 	collectible_sensor.area_entered.connect(on_collectible_entered)
+	player_sensor_position = player_collision_shape.position
+	collectible_sensor_position = collectible_collision_shape.position
 
 func get_movement_direction() -> Vector2:
 	var direction := Vector2.ZERO
@@ -40,9 +47,13 @@ func get_sprite_position(direction: Vector2) -> void:
 	if direction.x > 0:
 		player.sprite.flip_h = false
 		damage_emitter.scale.x = 1
+		player_collision_shape.position.x = player_sensor_position.x
+		collectible_collision_shape.position.x = collectible_sensor_position.x
 	elif direction.x < 0:
 		player.sprite.flip_h = true
 		damage_emitter.scale.x = -1
+		player_collision_shape.position.x = -player_sensor_position.x
+		collectible_collision_shape.position.x = -collectible_sensor_position.x
 
 func on_collectible_entered(collectible: Area2D) -> void:
 	collectible.queue_free()
