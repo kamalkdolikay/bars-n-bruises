@@ -79,10 +79,11 @@ func on_receive_damage() -> void:
 	hurt_emitter.emit()
 
 func reserve_slot(enemy: EnemyCharacter) -> EnemySlot:
-	var available_slots := enemy_slots.filter(
-		func(slot): return slot.is_free()
+	var available_slots: Array = enemy_slots.filter(
+		func(slot: EnemySlot) -> bool:
+			return slot.is_free()
 	)
-	if available_slots.size() == 0:
+	if available_slots.is_empty():
 		return null
 	
 	available_slots.sort_custom(
@@ -92,12 +93,14 @@ func reserve_slot(enemy: EnemyCharacter) -> EnemySlot:
 			return dist_a < dist_b
 	)
 	
-	available_slots[0].occupy(enemy)
-	return available_slots[0]
+	var selected_slot: EnemySlot = available_slots[0]
+	selected_slot.occupy(enemy)
+	return selected_slot
 
 func free_slot(enemy: EnemyCharacter) -> void:
-	var target_slots := enemy_slots.filter(
-		func(slot: EnemySlot): return slot.occupant == enemy
+	var target_slots: Array = enemy_slots.filter(
+		func(slot: EnemySlot) -> bool:
+			return slot.occupant == enemy
 	)
-	if target_slots.size() == 1:
+	if not target_slots.is_empty():
 		target_slots[0].free_up()
