@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://gp0muuff0noy"]
+[gd_scene load_steps=41 format=3 uid="uid://gp0muuff0noy"]
 
 [ext_resource type="Texture2D" uid="uid://chi2u85rf4ru3" path="res://assets/player/Bancho_Idle.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://c6ajiixwkldx8" path="res://scripts/player/player.gd" id="1_g2els"]
@@ -20,6 +20,7 @@
 [ext_resource type="Script" uid="uid://bl80imaufdmc0" path="res://scenes/colliders/player_damage_receiver.gd" id="17_jb4us"]
 [ext_resource type="Script" uid="uid://b1ei3lcf1jlyc" path="res://scripts/player/hurt_2_state.gd" id="17_ux0ro"]
 [ext_resource type="Script" uid="uid://2p6uunft5557" path="res://scripts/player/wakeup_state.gd" id="19_2smwq"]
+[ext_resource type="PackedScene" uid="uid://b1xao5f43h2g8" path="res://scenes/character/enemy_slot.tscn" id="21_x06ku"]
 
 [sub_resource type="Animation" id="Animation_g2els"]
 length = 0.001
@@ -896,3 +897,17 @@ monitorable = false
 position = Vector2(-8, -7)
 shape = SubResource("RectangleShape2D_2smwq")
 debug_color = Color(0.319573, 0.49116, 1, 0.42)
+
+[node name="EnemySlots" type="Node2D" parent="."]
+
+[node name="EnemySlot" parent="EnemySlots" instance=ExtResource("21_x06ku")]
+position = Vector2(26, 11)
+
+[node name="EnemySlot2" parent="EnemySlots" instance=ExtResource("21_x06ku")]
+position = Vector2(26, -16)
+
+[node name="EnemySlot3" parent="EnemySlots" instance=ExtResource("21_x06ku")]
+position = Vector2(-38, -18)
+
+[node name="EnemySlot4" parent="EnemySlots" instance=ExtResource("21_x06ku")]
+position = Vector2(-37, 10)
