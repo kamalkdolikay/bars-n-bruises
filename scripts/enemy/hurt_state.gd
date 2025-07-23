@@ -18,7 +18,7 @@ func enter() -> void:
 
 func update(_delta: float) -> void:
 	if not is_knocked_out:
-		var direction := Vector2.RIGHT if enemy.last_valid_direction.x < 0 else Vector2.LEFT
+		var direction := enemy.get_movement_direction()
 		enemy.velocity = direction * knockback_intensity
 		enemy.move_and_slide()
 	elif not wakeup_started:
