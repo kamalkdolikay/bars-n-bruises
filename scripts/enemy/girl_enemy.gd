@@ -97,11 +97,15 @@ func get_sprite_position(_direction: Vector2) -> void:
 		enemy_collision_shape.position.x = -enemy_sensor_position.x
 		enemy_damage_receiver.position.x = -enemy_damage_sensor.x
 
-func on_receive_damage(_damage: int, _direction: Vector2) -> void:
+func on_receive_damage(_damage: int, _direction: Vector2, hit_type: EnemyDamageReceiver.HitType) -> void:
 	current_health = clamp(current_health - _damage, 0, max_health)
-	if current_health <= 0:
+	
+	# Free slot only on death
+	if current_health == 0 and is_instance_valid(player_slot):
 		player.free_slot(self)
-		queue_free()
-	else:
-		enemy_hurt_emitter.emit(states[State.HURT2])
+		player_slot = null
+	
+	# Emit HURT2 for death or KNOCKDOWN, otherwise HURT1
+	var state_to_emit = states[State.HURT2] if current_health == 0 or hit_type == EnemyDamageReceiver.HitType.KNOCKDOWN else states[State.HURT1]
+	enemy_hurt_emitter.emit(state_to_emit)
 		
