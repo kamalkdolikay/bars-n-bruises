@@ -14,6 +14,7 @@ signal hurt_emitter
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var player_damage_receiver: CollisionShape2D = $DamageReceiver/CollisionShape2D
 @onready var enemy_slots: Array = $EnemySlots.get_children()
+@onready var state_machine: CharacterStateMachine = $StateMachine
 
 @export var move_speed: float = 50.0
 @export var input_transitions: Dictionary = {
@@ -68,12 +69,16 @@ func on_collectible_entered(collectible: Area2D) -> void:
 	collectible.queue_free()
 
 func on_emit_damage(_damage_receiver: Area2D) -> void:
+	var hit_type = EnemyDamageReceiver.HitType.NORMAL
+	if state_machine.current_state.name == "Attack3":
+		hit_type = EnemyDamageReceiver.HitType.KNOCKDOWN
+
 	if _damage_receiver is DamageReceiver:
 		var direction := Vector2.LEFT if _damage_receiver.global_position.x < global_position.x else Vector2.RIGHT
 		(_damage_receiver as DamageReceiver).barrel_damage_receiver.emit(direction)
 	elif _damage_receiver is EnemyDamageReceiver:
 		var direction := Vector2.LEFT if _damage_receiver.global_position.x < global_position.x else Vector2.RIGHT
-		(_damage_receiver as EnemyDamageReceiver).enemy_damage_receiver.emit(damage, direction)
+		(_damage_receiver as EnemyDamageReceiver).enemy_damage_receiver.emit(damage, direction, hit_type)
 	
 func on_receive_damage() -> void:
 	hurt_emitter.emit()
