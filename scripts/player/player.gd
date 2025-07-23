@@ -13,7 +13,7 @@ signal hurt_emitter
 @onready var collectible_collision_shape: CollisionShape2D = $CollectibleSensor/CollisionShape2D
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var player_damage_receiver: CollisionShape2D = $DamageReceiver/CollisionShape2D
-
+@onready var enemy_slots: Array = $EnemySlots.get_children()
 
 @export var move_speed: float = 50.0
 @export var input_transitions: Dictionary = {
@@ -77,3 +77,27 @@ func on_emit_damage(_damage_receiver: Area2D) -> void:
 	
 func on_receive_damage() -> void:
 	hurt_emitter.emit()
+
+func reserve_slot(enemy: EnemyCharacter) -> EnemySlot:
+	var available_slots := enemy_slots.filter(
+		func(slot): return slot.is_free()
+	)
+	if available_slots.size() == 0:
+		return null
+	
+	available_slots.sort_custom(
+		func(a: EnemySlot, b: EnemySlot):
+			var dist_a := (enemy.global_position - a.global_position).length()
+			var dist_b := (enemy.global_position - b.global_position).length()
+			return dist_a < dist_b
+	)
+	
+	available_slots[0].occupy(enemy)
+	return available_slots[0]
+
+func free_slot(enemy: EnemyCharacter) -> void:
+	var target_slots := enemy_slots.filter(
+		func(slot: EnemySlot): return slot.occupant == enemy
+	)
+	if target_slots.size() == 1:
+		target_slots[0].free_up()
