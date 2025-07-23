@@ -28,7 +28,10 @@ func update(_delta: float) -> void:
 func start_wakeup_delay() -> void:
 	await get_tree().create_timer(0.5).timeout
 	if is_knocked_out and wakeup_started:
-		enemy.animation_player.play(hurt_state[State.GETUP])
+		if enemy.current_health <= 0:
+			enemy.queue_free()
+		else:
+			enemy.animation_player.play(hurt_state[State.GETUP])
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == hurt_state[State.KNOCKEDOUT]:
