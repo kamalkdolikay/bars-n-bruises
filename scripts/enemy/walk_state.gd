@@ -9,7 +9,7 @@ func enter() -> void:
 func update(_delta: float) -> void:
 	var direction := enemy.get_movement_direction()
 	if direction == Vector2.ZERO:
-		transition.emit("Idle")
+		transition.emit(enemy.states[enemy.State.IDLE])
 	
 	enemy.get_sprite_position(direction)
 	enemy.velocity = direction.normalized() * enemy.speed
