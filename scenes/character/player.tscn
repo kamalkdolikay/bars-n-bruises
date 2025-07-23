@@ -904,10 +904,10 @@ debug_color = Color(0.319573, 0.49116, 1, 0.42)
 position = Vector2(26, 11)
 
 [node name="EnemySlot2" parent="EnemySlots" instance=ExtResource("21_x06ku")]
-position = Vector2(26, -16)
+position = Vector2(26, -14)
 
 [node name="EnemySlot3" parent="EnemySlots" instance=ExtResource("21_x06ku")]
-position = Vector2(-38, -18)
+position = Vector2(-38, -14)
 
 [node name="EnemySlot4" parent="EnemySlots" instance=ExtResource("21_x06ku")]
 position = Vector2(-37, 10)
