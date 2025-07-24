@@ -4,5 +4,6 @@ extends Node2D
 @onready var camera: Camera2D = $Camera
 
 func _process(_delta: float) -> void:
-	if player.position.x > camera.position.x:
-		camera.position.x = player.position.x
+	if player != null:
+		if player.position.x > camera.position.x:
+			camera.position.x = player.position.x
