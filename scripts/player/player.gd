@@ -27,6 +27,8 @@ signal hurt_emitter
 @export var max_health: int
 @export var speed: int
 
+var current_health := 0
+var hittype: PlayerDamageReceiver.HitType
 var player_sensor_position
 var collectible_sensor_position
 var player_damage_sensor
@@ -38,6 +40,7 @@ func _ready() -> void:
 	player_sensor_position = player_collision_shape.position
 	collectible_sensor_position = collectible_collision_shape.position
 	player_damage_sensor = player_damage_receiver.position
+	current_health = max_health
 
 func get_movement_direction() -> Vector2:
 	var direction := Vector2.ZERO
@@ -50,7 +53,7 @@ func get_movement_direction() -> Vector2:
 	if Input.is_action_pressed("ui_down"):
 		direction.y = 1
 	return direction
-	
+
 func get_sprite_position(direction: Vector2) -> void:
 	if direction.x > 0:
 		sprite.flip_h = false
@@ -83,8 +86,20 @@ func on_emit_damage(_damage_receiver: Area2D) -> void:
 		var direction := Vector2.LEFT if _damage_receiver.global_position.x < global_position.x else Vector2.RIGHT
 		(_damage_receiver as EnemyDamageReceiver).enemy_damage_receiver.emit(damage, direction, hit_type)
 	
-func on_receive_damage() -> void:
-	hurt_emitter.emit()
+func on_receive_damage(_damage: int, _direction: Vector2, hit_type: PlayerDamageReceiver.HitType) -> void:
+	current_health = clamp(current_health - _damage, 0, max_health)
+	print(current_health)
+	var state_to_emit
+	
+	if current_health == 0 or hit_type == PlayerDamageReceiver.HitType.KNOCKDOWN:
+		state_to_emit = "Hurt2"
+	elif hit_type == PlayerDamageReceiver.HitType.PUNCH:
+		state_to_emit = "Hurt1"
+		hittype = PlayerDamageReceiver.HitType.KICK
+	else:
+		state_to_emit = "Hurt1"
+		hittype = PlayerDamageReceiver.HitType.PUNCH
+	hurt_emitter.emit(state_to_emit)
 
 func reserve_slot(enemy: EnemyCharacter) -> EnemySlot:
 	var available_slots: Array = enemy_slots.filter(

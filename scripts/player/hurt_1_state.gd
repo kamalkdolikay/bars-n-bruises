@@ -7,20 +7,22 @@ extends CharacterState
 var is_knockedout: bool = false
 
 func enter() -> void:
-	if not player.animation_player.is_connected("animation_finished", Callable(self, "_on_animation_finished")):
-		player.animation_player.connect("animation_finished", Callable(self, "_on_animation_finished"))
-		
 	player.animation_player.play("hurt1")
 
 func update(_delta: float) -> void:
 	if not is_knockedout:
-		player.velocity = Vector2.LEFT * knockback_intensity
+		var direction = player.get_movement_direction()
+		player.velocity = direction * knockback_intensity
 		player.move_and_slide()
 
-func _on_animation_finished(_anim_name: String) -> void:
-	is_knockedout = true
-	if _anim_name == "hurt1":
-		transition.emit("Idle")
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "hurt1":
+		is_knockedout = true
+		if player.hittype == PlayerDamageReceiver.HitType.PUNCH:
+			player.collateral_damage_emitter.set_deferred("monitoring", true)
+			transition.emit("Hurt2")
+		else:
+			transition.emit("Idle")
 
 func exit() -> void:
 	player.animation_player.stop()

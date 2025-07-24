@@ -27,5 +27,5 @@ func on_state_transition(state_name: String) -> void:
 	current_state = states[state_name.to_lower()]
 	current_state.enter()
 
-func on_player_hurt() -> void:
-	on_state_transition("Hurt2")
+func on_player_hurt(state: String) -> void:
+	on_state_transition(state)
