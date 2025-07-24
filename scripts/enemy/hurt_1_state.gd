@@ -18,7 +18,11 @@ func update(_delta: float) -> void:
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "hurt1":
 		is_knockedout = true
-		transition.emit(enemy.states[enemy.State.IDLE])
+		if enemy.hittype == EnemyDamageReceiver.HitType.POWER:
+			enemy.collateral_damage_emitter.set_deferred("monitoring", true)
+			transition.emit(enemy.states[enemy.State.FLY])
+		else:
+			transition.emit(enemy.states[enemy.State.IDLE])
 
 func exit() -> void:
 	enemy.animation_player.stop()
