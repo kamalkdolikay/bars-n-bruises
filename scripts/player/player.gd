@@ -72,7 +72,10 @@ func on_emit_damage(_damage_receiver: Area2D) -> void:
 	var hit_type = EnemyDamageReceiver.HitType.NORMAL
 	if state_machine.current_state.name == "Attack3":
 		hit_type = EnemyDamageReceiver.HitType.KNOCKDOWN
-
+		damage = 6
+	elif state_machine.current_state.name == "Attack2":
+		hit_type = EnemyDamageReceiver.HitType.POWER
+		damage = 8
 	if _damage_receiver is DamageReceiver:
 		var direction := Vector2.LEFT if _damage_receiver.global_position.x < global_position.x else Vector2.RIGHT
 		(_damage_receiver as DamageReceiver).barrel_damage_receiver.emit(direction)
