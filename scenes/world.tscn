@@ -90,19 +90,3 @@ collectible_type = 2
 [node name="GirlEnemy" parent="ActorsContainer" node_paths=PackedStringArray("player") instance=ExtResource("7_i7141")]
 position = Vector2(311, 242)
 player = NodePath("../Player")
-
-[node name="GirlEnemy2" parent="ActorsContainer" node_paths=PackedStringArray("player") instance=ExtResource("7_i7141")]
-position = Vector2(75, 338)
-player = NodePath("../Player")
-
-[node name="GirlEnemy3" parent="ActorsContainer" node_paths=PackedStringArray("player") instance=ExtResource("7_i7141")]
-position = Vector2(418, 313)
-player = NodePath("../Player")
-
-[node name="GirlEnemy4" parent="ActorsContainer" node_paths=PackedStringArray("player") instance=ExtResource("7_i7141")]
-position = Vector2(59, 253)
-player = NodePath("../Player")
-
-[node name="GirlEnemy5" parent="ActorsContainer" node_paths=PackedStringArray("player") instance=ExtResource("7_i7141")]
-position = Vector2(175, 227)
-player = NodePath("../Player")
