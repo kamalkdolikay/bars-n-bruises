@@ -393,7 +393,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_ux0ro"]
 resource_name = "hurt2"
-length = 0.5
+length = 0.3
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -402,10 +402,10 @@ tracks/0/path = NodePath("Sprite2D:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [ExtResource("9_ur7pv")]
+"values": [ExtResource("9_ur7pv"), ExtResource("9_vhx6d")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -414,10 +414,10 @@ tracks/1/path = NodePath("Sprite2D:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [4]
+"values": [4, 3]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -426,10 +426,10 @@ tracks/2/path = NodePath("Sprite2D:vframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [1]
+"values": [1, 1]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -438,10 +438,10 @@ tracks/3/path = NodePath("Sprite2D:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [2, 3]
+"values": [2, 3, 0]
 }
 
 [sub_resource type="Animation" id="Animation_3vyb7"]
@@ -964,12 +964,12 @@ player = NodePath("../..")
 [node name="Hurt1" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("16_ba010")
 player = NodePath("../..")
-knockback_intensity = 20.0
+knockback_intensity = 100.0
 
 [node name="Hurt2" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("17_ux0ro")
 player = NodePath("../..")
-knockback_intensity = 50.0
+knockback_intensity = 70.0
 
 [node name="Wakeup" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("19_2smwq")
@@ -1021,3 +1021,6 @@ position = Vector2(-38, -14)
 
 [node name="EnemySlot4" parent="EnemySlots" instance=ExtResource("21_x06ku")]
 position = Vector2(-37, 10)
+
+[connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Hurt1" method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Hurt2" method="_on_animation_player_animation_finished"]
