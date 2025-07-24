@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 # Signal to notify state machine of damage
 signal enemy_hurt_emitter
+signal enemy_attack_emitter
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var enemy_collision_shape: CollisionShape2D = $CollisionShape2D
@@ -23,6 +24,8 @@ signal enemy_hurt_emitter
 # Interval to check for a closer slot (in seconds)
 @export var slot_check_interval: float = 0.5
 @export var flight_speed: float
+@export var duration_between_hits: int
+@export var duration_prep_hit: int
 
 enum State {IDLE, WALK, HURT1, HURT2, WAKEUP, FLY, FALL}
 var states := {
@@ -40,8 +43,12 @@ var enemy_damage_sensor: Vector2
 var player_slot: EnemySlot = null
 var slot_check_timer: float = 0.0
 var hittype: EnemyDamageReceiver.HitType
+var time_since_last_hit := Time.get_ticks_msec()
+var time_since_prep_hit := Time.get_ticks_msec()
+var state = null
 
 func _ready() -> void:
+	damage_emitter.area_entered.connect(on_emit_damage)
 	damage_receiver.enemy_damage_receiver.connect(on_receive_damage)
 	enemy_sensor_position = enemy_collision_shape.position
 	enemy_damage_sensor = enemy_damage_receiver.position
@@ -54,6 +61,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	# Update slot check timer
+	handle_prep_attack()
 	slot_check_timer += delta
 	if slot_check_timer >= slot_check_interval:
 		update_slot()
@@ -63,14 +71,15 @@ func _process(delta: float) -> void:
 		player_slot = player.reserve_slot(self)
 
 func update_slot() -> void:
-	if player_slot != null and is_instance_valid(player_slot):
-		if (player_slot.global_position - global_position).length() <= max_slot_distance:
-			return
-		player.free_slot(self)
-		player_slot = null
-	
-	# Reserve the nearest available slot
-	player_slot = player.reserve_slot(self)
+	if player != null:
+		if player_slot != null and is_instance_valid(player_slot):
+			if (player_slot.global_position - global_position).length() <= max_slot_distance:
+				return
+			player.free_slot(self)
+			player_slot = null
+		
+		# Reserve the nearest available slot
+		player_slot = player.reserve_slot(self)
 
 func get_movement_direction() -> Vector2:
 	var direction := Vector2.ZERO
@@ -78,8 +87,12 @@ func get_movement_direction() -> Vector2:
 		# Check if a slot is assigned
 		if player_slot != null and is_instance_valid(player_slot):
 			direction = (player_slot.global_position - global_position).normalized()
-			if (player_slot.global_position - global_position).length() < 1:
+			if is_player_within_range():
 				direction = Vector2.ZERO
+				if can_attack():
+					state = "PREP_ATTACK"
+					time_since_prep_hit = Time.get_ticks_msec()
+					enemy_attack_emitter.emit()
 		else:
 			# No slot available or slot is invalid, idle
 			direction = Vector2.ZERO
@@ -111,6 +124,19 @@ func on_emit_collateral_damage(receiver: EnemyDamageReceiver) -> void:
 func on_wall_hit(_wall: AnimatableBody2D) -> void:
 	enemy_hurt_emitter.emit(states[State.FALL])
 
+func handle_prep_attack() -> void:
+	if state == "PREP_ATTACK" and (Time.get_ticks_msec() - time_since_prep_hit > duration_prep_hit):
+		state = "ATTACK"
+		time_since_last_hit = Time.get_ticks_msec()
+
+func is_player_within_range() -> bool:
+	return (player_slot.global_position - global_position).length() < 1
+
+func can_attack() -> bool:
+	if Time.get_ticks_msec() - time_since_last_hit < duration_between_hits:
+		return false
+	return state_machine.current_state.name == "Idle" or state_machine.current_state.name == "Walk"
+
 func on_receive_damage(_damage: int, _direction: Vector2, hit_type: EnemyDamageReceiver.HitType) -> void:
 	current_health = clamp(current_health - _damage, 0, max_health)
 	
@@ -132,3 +158,7 @@ func on_receive_damage(_damage: int, _direction: Vector2, hit_type: EnemyDamageR
 		hittype = EnemyDamageReceiver.HitType.NORMAL
 	enemy_hurt_emitter.emit(state_to_emit)
 		
+func on_emit_damage(_damage_receiver: Area2D) -> void:
+	var hit_type = EnemyDamageReceiver.HitType.NORMAL
+	var direction := Vector2.LEFT if _damage_receiver.global_position.x < global_position.x else Vector2.RIGHT
+	(_damage_receiver as PlayerDamageReceiver).player_damage_receiver.emit(damage, direction, hit_type)

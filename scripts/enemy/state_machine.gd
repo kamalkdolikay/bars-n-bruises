@@ -14,6 +14,7 @@ func _ready() -> void:
 			child.transition.connect(on_state_transition)
 			
 	enemy.enemy_hurt_emitter.connect(on_enemy_hurt)
+	enemy.enemy_attack_emitter.connect(on_enemy_attack)
 
 func _process(delta: float) -> void:
 	if current_state != null:
@@ -29,3 +30,6 @@ func on_state_transition(state_name: String) -> void:
 
 func on_enemy_hurt(state: String) -> void:
 	on_state_transition(state)
+
+func on_enemy_attack() -> void:
+	on_state_transition("Attack1")
