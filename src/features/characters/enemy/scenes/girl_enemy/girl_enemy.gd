@@ -31,7 +31,6 @@ var states := {
 var attack_states := ["Attack1", "Attack2", "Attack3"]
 
 # Internal Variables
-var hit_type: DamageReceiver.HitType = DamageReceiver.HitType.NORMAL
 var player_slot: EnemySlot = null
 var slot_check_timer: float = 0.0
 var last_attack_time: int = 0

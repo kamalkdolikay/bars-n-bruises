@@ -18,6 +18,7 @@ extends CharacterBody2D
 var current_health := 0
 var initial_collision_position: Vector2
 var initial_damage_position: Vector2
+var hit_type: DamageReceiver.HitType = DamageReceiver.HitType.NORMAL
 
 # Initialization
 func _ready() -> void:
