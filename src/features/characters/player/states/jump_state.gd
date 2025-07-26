@@ -32,7 +32,7 @@ func update(delta: float) -> void:
 	player.velocity.x = direction.x * player.move_speed
 	player.position.y = initial_y - height
 	
-	player.get_sprite_position(direction)
+	player.get_sprite_position()
 	player.move_and_slide()
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:

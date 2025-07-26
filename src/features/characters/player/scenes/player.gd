@@ -32,8 +32,8 @@ var states := {
 
 # Internal Variables
 var initial_collectible_position: Vector2
-var hit_type: DamageReceiver.HitType
 var knockback_direction: Vector2 = Vector2.ZERO
+var _last_facing_direction: Vector2 = Vector2.RIGHT
 
 # Initialization
 func _ready() -> void:
@@ -56,21 +56,19 @@ func get_movement_direction() -> Vector2:
 		direction.y = -1
 	if Input.is_action_pressed("ui_down"):
 		direction.y = 1
+	if direction != Vector2.ZERO:
+		_last_facing_direction = direction.normalized()
 	return direction
 
-func get_sprite_position(direction: Vector2) -> void:
-	if direction.x > 0:
-		sprite.flip_h = false
-		damage_emitter.scale.x = 1
-		collision_shape.position.x = initial_collision_position.x
-		collectible_collision_shape.position.x = initial_collectible_position.x
-		damage_shape.position.x = initial_damage_position.x
-	elif direction.x < 0:
-		sprite.flip_h = true
-		damage_emitter.scale.x = -1
-		collision_shape.position.x = -initial_collision_position.x
-		collectible_collision_shape.position.x = -initial_collectible_position.x
-		damage_shape.position.x = -initial_damage_position.x
+func get_sprite_position() -> void:
+	var direction := _last_facing_direction
+	var flip := -1.0 if direction.x < 0 else 1.0
+	
+	sprite.flip_h = direction.x < 0
+	damage_emitter.scale.x = flip
+	collision_shape.position.x = initial_collision_position.x * flip
+	collectible_collision_shape.position.x = initial_collectible_position.x * flip
+	damage_shape.position.x = initial_damage_position.x * flip
 
 func get_knockback_direction() -> Vector2:
 	return knockback_direction
