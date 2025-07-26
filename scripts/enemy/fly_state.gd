@@ -4,15 +4,15 @@ extends CharacterState
 @export var enemy: EnemyCharacter
 
 func enter() -> void:
-	enemy.enemy_collision_shape.set_deferred("disabled", true)	
-	enemy.animation_player.play("fly")
+	enemy.collision_shape.set_deferred("disabled", true)	
+	enemy.play_animation((enemy.states[enemy.State.FLY]).to_lower())
 
 func update(_delta: float) -> void:
-	var direction := Vector2.RIGHT if enemy.get_facing_direction().x < 0 else Vector2.LEFT
+	var direction := enemy.get_knockback_direction()
 	enemy.velocity = direction * enemy.flight_speed
 	enemy.move_and_slide()
 
 func exit() -> void:
-	enemy.animation_player.stop()
-	enemy.enemy_collision_shape.set_deferred("disabled", false)
-	enemy.collateral_damage_emitter.set_deferred("monitoring", false)
+	enemy.stop_animation()
+	enemy.collision_shape.set_deferred("disabled", false)
+	enemy.collateral_emitter.set_deferred("monitoring", false)

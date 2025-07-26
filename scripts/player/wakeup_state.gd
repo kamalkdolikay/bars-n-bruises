@@ -3,18 +3,15 @@ extends CharacterState
 
 @export var player: PlayerCharacter
 
-func enter() -> void:
-	if not player.animation_player.is_connected("animation_finished", Callable(self, "_on_animation_finished")):
-		player.animation_player.connect("animation_finished", Callable(self, "_on_animation_finished"))
-	
-	player.animation_player.play("wakeup")
+func enter() -> void:	
+	player.play_animation((player.states[player.State.WAKEUP]).to_lower())
 	
 func update(_delta: float) -> void:
 	pass
 
-func _on_animation_finished(animation_state: String) -> void:
-	if animation_state == "wakeup":
-		transition.emit("Idle")
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == (player.states[player.State.WAKEUP]).to_lower():
+		transition.emit(player.states[player.State.IDLE])
 
 func exit() -> void:
-	player.animation_player.stop()
+	player.stop_animation()

@@ -911,7 +911,7 @@ collision_layer = 2
 collision_mask = 137
 script = ExtResource("1_g2els")
 damage = 4
-max_health = 30
+max_health = 100
 speed = 35
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -931,10 +931,9 @@ position = Vector2(-8, -7)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_oprun")
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state", "player")]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
 script = ExtResource("4_dqkch")
 current_state = NodePath("Idle")
-player = NodePath("..")
 
 [node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("5_qlg0r")
@@ -964,7 +963,7 @@ player = NodePath("../..")
 [node name="Hurt1" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("16_ba010")
 player = NodePath("../..")
-knockback_intensity = 100.0
+knockback_intensity = 20.0
 
 [node name="Hurt2" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("17_ux0ro")
@@ -1022,5 +1021,10 @@ position = Vector2(-38, -14)
 [node name="EnemySlot4" parent="EnemySlots" instance=ExtResource("21_x06ku")]
 position = Vector2(-37, 10)
 
+[connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Jump" method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Attack1" method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Attack2" method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Attack3" method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Hurt1" method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Hurt2" method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Wakeup" method="_on_animation_player_animation_finished"]

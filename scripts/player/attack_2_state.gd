@@ -4,20 +4,17 @@ extends CharacterState
 @export var player: PlayerCharacter
 @onready var damage_emitter: Area2D = $"../../DamageEmitter"
 
-func enter() -> void:
-	if not player.animation_player.is_connected("animation_finished", Callable(self, "_on_animation_finished")):
-		player.animation_player.connect("animation_finished", Callable(self, "_on_animation_finished"))
-	
+func enter() -> void:	
 	damage_emitter.monitoring = true
-	player.animation_player.play("attack2")
+	player.play_animation((player.states[player.State.ATTACK2]).to_lower())
 
 func update(_delta: float):
 	pass
 	
-func _on_animation_finished(animation_state: String) -> void:
-	if animation_state == "attack2":
-		transition.emit("Idle")
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == (player.states[player.State.ATTACK2]).to_lower():
+		transition.emit(player.states[player.State.IDLE])
 	
 func exit() -> void:
-	player.animation_player.stop()
+	player.stop_animation()
 	damage_emitter.monitoring = false

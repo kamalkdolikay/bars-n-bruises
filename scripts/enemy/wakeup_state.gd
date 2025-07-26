@@ -4,14 +4,14 @@ extends CharacterState
 @export var enemy: EnemyCharacter
 
 func enter() -> void:
-	enemy.animation_player.play("wakeup")
+	enemy.play_animation((enemy.states[enemy.State.WAKEUP]).to_lower())
 	
 func update(_delta: float) -> void:
 	pass
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	if anim_name == "wakeup":
+	if anim_name == (enemy.states[enemy.State.WAKEUP]).to_lower():
 		transition.emit(enemy.states[enemy.State.IDLE])
 
 func exit() -> void:
-	enemy.animation_player.stop()
+	enemy.stop_animation()

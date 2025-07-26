@@ -4,32 +4,29 @@ extends CharacterState
 @export var player: PlayerCharacter
 @onready var damage_emitter: Area2D = $"../../DamageEmitter"
 
-enum State { START, END }
+enum LocalState { START, END }
 
 var attack_state := {
-	State.START: "attack1_start",
-	State.END: "attack1_finish",
+	LocalState.START: "attack1_start",
+	LocalState.END: "attack1_finish",
 }
 var finish_attack: bool = false
 
 func enter() -> void:
-	if not player.animation_player.is_connected("animation_finished", Callable(self, "_on_animation_finished")):
-		player.animation_player.connect("animation_finished", Callable(self, "_on_animation_finished"))
-
-	player.animation_player.play(attack_state[State.START])
+	player.play_animation(attack_state[LocalState.START])
 
 func update(_delta: float):
 	if finish_attack:
 		damage_emitter.monitoring = true
-		player.animation_player.play(attack_state[State.END])
+		player.play_animation(attack_state[LocalState.END])
 	
-func _on_animation_finished(animation_state: String) -> void:
-	if animation_state == attack_state[State.START]:
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == attack_state[LocalState.START]:
 		finish_attack = true
-	elif animation_state == attack_state[State.END]:
-		transition.emit("Idle")
+	elif anim_name == attack_state[LocalState.END]:
+		transition.emit(player.states[player.State.IDLE])
 	
 func exit() -> void:
-	player.animation_player.stop()
+	player.stop_animation()
 	damage_emitter.monitoring = false
 	finish_attack = false

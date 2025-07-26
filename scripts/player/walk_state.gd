@@ -4,7 +4,7 @@ extends CharacterState
 @export var player: PlayerCharacter
 
 func enter() -> void:
-	player.animation_player.play("walk")
+	player.play_animation((player.states[player.State.WALK]).to_lower())
 
 func update(_delta: float):
 	var direction := player.get_movement_direction()
@@ -24,7 +24,7 @@ func update(_delta: float):
 	
 	# Transition to Idle if no movement
 	if direction == Vector2.ZERO:
-		transition.emit("Idle")
+		transition.emit(player.states[player.State.IDLE])
 
 func exit() -> void:
-	player.animation_player.stop()
+	player.stop_animation()

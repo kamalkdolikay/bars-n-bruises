@@ -4,26 +4,26 @@ extends CharacterState
 @export var enemy: EnemyCharacter
 @export var knockback_intensity: float
 
-var is_knockedout: bool = false
+var is_knocked_out: bool = false
 
 func enter() -> void:
-	enemy.animation_player.play("hurt1")
+	enemy.play_animation((enemy.states[enemy.State.HURT1]).to_lower())
 
 func update(_delta: float) -> void:
-	if not is_knockedout:
-		var direction := Vector2.RIGHT if enemy.get_facing_direction().x < 0 else Vector2.LEFT
+	if not is_knocked_out:
+		var direction := enemy.get_knockback_direction()
 		enemy.velocity = direction * knockback_intensity
 		enemy.move_and_slide()
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	if anim_name == "hurt1":
-		is_knockedout = true
-		if enemy.hittype == EnemyDamageReceiver.HitType.POWER:
-			enemy.collateral_damage_emitter.set_deferred("monitoring", true)
+	if anim_name == (enemy.states[enemy.State.HURT1]).to_lower():
+		is_knocked_out = true
+		if enemy.hit_type == EnemyDamageReceiver.HitType.POWER:
+			enemy.collateral_emitter.set_deferred("monitoring", true)
 			transition.emit(enemy.states[enemy.State.FLY])
 		else:
 			transition.emit(enemy.states[enemy.State.IDLE])
 
 func exit() -> void:
-	enemy.animation_player.stop()
-	is_knockedout = false
+	enemy.stop_animation()
+	is_knocked_out = false
