@@ -83,7 +83,7 @@ func _on_receive_damage(damage_amount: int, direction: Vector2, _hit_type: Damag
 	var state_to_emit
 	knockback_direction = direction.normalized()
 	
-	if current_health == 0 or _hit_type == DamageReceiver.HitType.KNOCKDOWN:
+	if is_dead() or _hit_type == DamageReceiver.HitType.KNOCKDOWN:
 		state_to_emit = "Hurt2"
 	elif _hit_type == DamageReceiver.HitType.PUNCH:
 		state_to_emit = "Hurt1"

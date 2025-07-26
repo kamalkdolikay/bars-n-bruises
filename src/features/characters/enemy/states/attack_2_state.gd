@@ -10,7 +10,7 @@ func enter() -> void:
 	
 func update(_delta: float) -> void:
 	pass
-	
+
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == (enemy.states[enemy.State.ATTACK2]).to_lower():
 		transition.emit(enemy.states[enemy.State.IDLE])

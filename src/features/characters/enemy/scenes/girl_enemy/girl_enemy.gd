@@ -2,7 +2,7 @@ class_name EnemyCharacter
 extends BaseCharacter
 
 # Nodes
-@onready var state_machine := $StateMachine
+@onready var state_machine: CharacterStateMachine = $StateMachine
 @onready var collateral_emitter: Area2D = $CollateralDamageEmitter
 
 # Exported Variables
@@ -42,7 +42,6 @@ func _ready() -> void:
 	super._ready()
 	# Connect signals
 	collateral_emitter.area_entered.connect(on_emit_collateral_damage)
-	collateral_emitter.body_entered.connect(on_wall_hit)
 	
 	# Attempt initial slot reservation
 	if player and not player_slot:
@@ -129,13 +128,13 @@ func _on_receive_damage(damage_amount: int, _direction: Vector2, _hit_type: Dama
 	super._on_receive_damage(damage_amount, _direction, _hit_type)
 	
 	# Free slot only on death
-	if current_health == 0 and is_instance_valid(player_slot):
+	if is_dead() and is_instance_valid(player_slot):
 		player.free_slot(self)
 		player_slot = null
 	
 	# Emit HURT2 for death or KNOCKDOWN, otherwise HURT1
 	var state_to_emit
-	if current_health == 0 or _hit_type == DamageReceiver.HitType.KNOCKDOWN:
+	if is_dead() or _hit_type == DamageReceiver.HitType.KNOCKDOWN:
 		state_to_emit = states[State.HURT2]
 	elif _hit_type == DamageReceiver.HitType.POWER:
 		state_to_emit = states[State.HURT1]
@@ -153,6 +152,3 @@ func _on_emit_damage(target: Area2D) -> void:
 func on_emit_collateral_damage(target: DamageReceiver) -> void:
 	var direction := Vector2.LEFT if get_facing_direction().x < 0 else Vector2.RIGHT
 	target.emit_damage(0, direction, DamageReceiver.HitType.KNOCKDOWN)
-
-func on_wall_hit(_wall: AnimatableBody2D) -> void:
-	state_machine.on_state_transition(states[State.FALL])
