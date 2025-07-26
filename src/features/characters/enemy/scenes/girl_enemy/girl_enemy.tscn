@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://7ja8na4u3ykt" path="res://src/assets/sprites/characters/enemy/BattingGirl_attack01-Sheet.png" id="5_yg2de"]
 [ext_resource type="Script" uid="uid://cfbhn5081cyf7" path="res://src/features/characters/enemy/states/walk_state.gd" id="6_040tv"]
 [ext_resource type="Texture2D" uid="uid://dy6yxyqfflnid" path="res://src/assets/sprites/characters/enemy/BattingGirl_attack02-Sheet.png" id="6_btta6"]
-[ext_resource type="Script" uid="uid://bxors862xyqs0" path="res://src/features/colliders/enemy_damage_receiver.gd" id="7_0p3jp"]
 [ext_resource type="Texture2D" uid="uid://cf713avxk2wx1" path="res://src/assets/sprites/characters/enemy/BattingGirl_attack03-Sheet.png" id="7_cq4ee"]
 [ext_resource type="Script" uid="uid://fp08417gbwba" path="res://src/features/characters/enemy/states/hurt_1_state.gd" id="8_o77e2"]
 [ext_resource type="Script" uid="uid://cy2tw2t5rtv3e" path="res://src/features/characters/enemy/states/hurt_2_state.gd" id="8_vnfr6"]
@@ -20,6 +19,7 @@
 [ext_resource type="Script" uid="uid://ciwc0ik06v3e8" path="res://src/features/characters/enemy/states/attack_2_state.gd" id="17_kmlv8"]
 [ext_resource type="Script" uid="uid://d05yawi8wr51f" path="res://src/features/characters/enemy/states/prep_attack_state.gd" id="17_kyowj"]
 [ext_resource type="Script" uid="uid://dwqpnn7gvmtls" path="res://src/features/characters/enemy/states/attack_3_state.gd" id="18_fxsuw"]
+[ext_resource type="PackedScene" uid="uid://dmo31lwma845v" path="res://src/features/colliders/damage_receiver.tscn" id="20_3o64p"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_040tv"]
 radius = 4.0
@@ -680,9 +680,9 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_040tv"]
 size = Vector2(36, 13)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0p3jp"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3o64p"]
 radius = 6.0
-height = 18.0
+height = 22.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8455d"]
 size = Vector2(11, 11)
@@ -691,11 +691,11 @@ size = Vector2(11, 11)
 collision_layer = 4
 collision_mask = 12
 script = ExtResource("1_1o6xl")
+flight_speed = 250.0
+attack_cooldown = 2000
 damage = 2
 max_health = 20
 speed = 25
-flight_speed = 250.0
-attack_cooldown = 1000
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_1o6xl")
@@ -776,15 +776,12 @@ position = Vector2(26, -1)
 shape = SubResource("RectangleShape2D_040tv")
 debug_color = Color(0.745521, 0.256561, 0.945206, 0.42)
 
-[node name="EnemyDamageReceiver" type="Area2D" parent="."]
+[node name="DamageReceiver" parent="." instance=ExtResource("20_3o64p")]
 collision_layer = 32
-collision_mask = 0
-monitoring = false
-script = ExtResource("7_0p3jp")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDamageReceiver"]
+[node name="CollisionShape2D" parent="DamageReceiver" index="0"]
 position = Vector2(-10, -38)
-shape = SubResource("CapsuleShape2D_0p3jp")
+shape = SubResource("CapsuleShape2D_3o64p")
 
 [node name="CollateralDamageEmitter" type="Area2D" parent="."]
 collision_layer = 0
@@ -804,3 +801,5 @@ debug_color = Color(0.573143, 0.55454, 0.0270795, 0.42)
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Attack1" method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Attack2" method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Attack3" method="_on_animation_player_animation_finished"]
+
+[editable path="DamageReceiver"]

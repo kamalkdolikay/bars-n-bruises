@@ -1,22 +1,13 @@
 class_name EnemyCharacter
-extends CharacterBody2D
+extends BaseCharacter
 
 # Nodes
-@onready var sprite: Sprite2D = $Sprite2D
-@onready var collision_shape: CollisionShape2D = $CollisionShape2D
-@onready var damage_emitter: Area2D = $DamageEmitter
-@onready var damage_receiver: EnemyDamageReceiver = $EnemyDamageReceiver
-@onready var damage_shape: CollisionShape2D = $EnemyDamageReceiver/CollisionShape2D
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var state_machine := $StateMachine
 @onready var collateral_emitter: Area2D = $CollateralDamageEmitter
 
 # Exported Variables
 @export var player: PlayerCharacter
-@export var damage: int
-@export var max_health: int
 @export var jump_intensity: int
-@export var speed: int
 @export var max_slot_distance: float = 50.0
 @export var slot_check_interval: float = 0.5
 @export var flight_speed: float
@@ -40,28 +31,19 @@ var states := {
 var attack_states := ["Attack1", "Attack2", "Attack3"]
 
 # Internal Variables
-var current_health: int = 0
-var hit_type: EnemyDamageReceiver.HitType = EnemyDamageReceiver.HitType.NORMAL
+var hit_type: DamageReceiver.HitType = DamageReceiver.HitType.NORMAL
 var player_slot: EnemySlot = null
 var slot_check_timer: float = 0.0
 var last_attack_time: int = 0
 var last_prep_time: int = 0
 
-var initial_collision_position: Vector2
-var initial_damage_position: Vector2
-
 # Initialization
 func _ready() -> void:
+	## Initialize enemy-specific properties and connections.
+	super._ready()
 	# Connect signals
-	damage_emitter.area_entered.connect(on_emit_damage)
-	damage_receiver.enemy_damage_receiver.connect(on_receive_damage)
 	collateral_emitter.area_entered.connect(on_emit_collateral_damage)
 	collateral_emitter.body_entered.connect(on_wall_hit)
-	
-	# Init state
-	initial_collision_position = collision_shape.position
-	initial_damage_position = damage_shape.position
-	current_health = max_health
 	
 	# Attempt initial slot reservation
 	if player and not player_slot:
@@ -90,13 +72,6 @@ func update_slot() -> void:
 		player.free_slot(self)
 		# Reserve the nearest available slot
 		player_slot = player.reserve_slot(self)
-
-# Animation
-func play_animation(state: String) -> void:
-	animation_player.play(state)
-
-func stop_animation() -> void:
-	animation_player.stop()
 
 # Movement & Facing
 func get_movement_direction() -> Vector2:
@@ -151,8 +126,8 @@ func is_player_within_range() -> bool:
 	return (player_slot.global_position - global_position).length() < 1
 
 # Damage Logic
-func on_receive_damage(damage_amount: int, _direction: Vector2, _hit_type: EnemyDamageReceiver.HitType) -> void:
-	current_health = clamp(current_health - damage_amount, 0, max_health)
+func _on_receive_damage(damage_amount: int, _direction: Vector2, _hit_type: DamageReceiver.HitType) -> void:
+	super._on_receive_damage(damage_amount, _direction, _hit_type)
 	
 	# Free slot only on death
 	if current_health == 0 and is_instance_valid(player_slot):
@@ -161,27 +136,24 @@ func on_receive_damage(damage_amount: int, _direction: Vector2, _hit_type: Enemy
 	
 	# Emit HURT2 for death or KNOCKDOWN, otherwise HURT1
 	var state_to_emit
-	if current_health == 0 or _hit_type == EnemyDamageReceiver.HitType.KNOCKDOWN:
+	if current_health == 0 or _hit_type == DamageReceiver.HitType.KNOCKDOWN:
 		state_to_emit = states[State.HURT2]
-	elif _hit_type == EnemyDamageReceiver.HitType.POWER:
+	elif _hit_type == DamageReceiver.HitType.POWER:
 		state_to_emit = states[State.HURT1]
-		hit_type = EnemyDamageReceiver.HitType.POWER
+		hit_type = DamageReceiver.HitType.POWER
 	else:
 		state_to_emit = states[State.HURT1]
-		hit_type = EnemyDamageReceiver.HitType.NORMAL
+		hit_type = DamageReceiver.HitType.NORMAL
 	state_machine.on_state_transition(state_to_emit)
 
-func is_dead() -> bool:
-	return current_health <= 0
-
 # Damage Emission
-func on_emit_damage(target: Area2D) -> void:
-	var direction := Vector2.LEFT if target.global_position.x < global_position.x else Vector2.RIGHT
-	(target as PlayerDamageReceiver).player_damage_receiver.emit(damage, direction, EnemyDamageReceiver.HitType.NORMAL)
+func _on_emit_damage(target: Area2D) -> void:
+	var direction := Vector2.LEFT if get_facing_direction().x < 0 else Vector2.RIGHT
+	target.emit_damage(damage, direction, DamageReceiver.HitType.NORMAL)
 
-func on_emit_collateral_damage(target: EnemyDamageReceiver) -> void:
-	var direction := Vector2.LEFT if target.global_position.x < global_position.x else Vector2.RIGHT
-	target.enemy_damage_receiver.emit(0, direction, EnemyDamageReceiver.HitType.KNOCKDOWN)
+func on_emit_collateral_damage(target: DamageReceiver) -> void:
+	var direction := Vector2.LEFT if get_facing_direction().x < 0 else Vector2.RIGHT
+	target.emit_damage(0, direction, DamageReceiver.HitType.KNOCKDOWN)
 
 func on_wall_hit(_wall: AnimatableBody2D) -> void:
 	state_machine.on_state_transition(states[State.FALL])

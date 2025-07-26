@@ -18,7 +18,7 @@ func update(_delta: float) -> void:
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == (player.states[player.State.HURT1]).to_lower():
 		is_knocked_out = true
-		if player.hit_type == PlayerDamageReceiver.HitType.PUNCH:
+		if player.hit_type == DamageReceiver.HitType.PUNCH:
 			transition.emit(player.states[player.State.HURT2])
 		else:
 			transition.emit(player.states[player.State.IDLE])

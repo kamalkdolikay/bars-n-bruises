@@ -16,7 +16,7 @@ var state: State = State.IDLE
 var should_destroy: bool = false
 
 func _ready() -> void:
-	damage_receiver.barrel_damage_receiver.connect(on_receive_damage)
+	damage_receiver.damage_received.connect(on_receive_damage)
 
 func _process(delta: float) -> void:
 	if state == State.IDLE:
@@ -26,7 +26,7 @@ func _process(delta: float) -> void:
 	sprite.position.y = -barrel_bounce_height
 	handle_air_time(delta)
 
-func on_receive_damage(direction: Vector2) -> void:
+func on_receive_damage(_damage_amount: int, direction: Vector2, _hit_type: DamageReceiver.HitType) -> void:
 	match state:
 		State.IDLE:
 			sprite.flip_h = direction.x < 0

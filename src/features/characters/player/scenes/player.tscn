@@ -17,9 +17,9 @@
 [ext_resource type="Script" uid="uid://c2mxwadwkl0ex" path="res://src/features/characters/player/states/attack_2_state.gd" id="13_jej6c"]
 [ext_resource type="Script" uid="uid://c5l6cljbxe78d" path="res://src/features/characters/player/states/attack_3_state.gd" id="14_f1ej7"]
 [ext_resource type="Script" uid="uid://crkkjly7lg45q" path="res://src/features/characters/player/states/hurt_1_state.gd" id="16_ba010"]
-[ext_resource type="Script" uid="uid://bl80imaufdmc0" path="res://src/features/colliders/player_damage_receiver.gd" id="17_jb4us"]
 [ext_resource type="Script" uid="uid://b1ei3lcf1jlyc" path="res://src/features/characters/player/states/hurt_2_state.gd" id="17_ux0ro"]
 [ext_resource type="Script" uid="uid://2p6uunft5557" path="res://src/features/characters/player/states/wakeup_state.gd" id="19_2smwq"]
+[ext_resource type="PackedScene" uid="uid://dmo31lwma845v" path="res://src/features/colliders/damage_receiver.tscn" id="20_mtg77"]
 [ext_resource type="PackedScene" uid="uid://b1xao5f43h2g8" path="res://src/features/characters/enemy/scenes/enemy_slot/enemy_slot.tscn" id="21_x06ku"]
 
 [sub_resource type="Animation" id="Animation_g2els"]
@@ -900,8 +900,8 @@ height = 42.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e5n5u"]
 size = Vector2(36, 13)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ba010"]
-size = Vector2(13, 41.5)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j6wef"]
+size = Vector2(12, 40)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2smwq"]
 size = Vector2(15, 10)
@@ -911,8 +911,7 @@ collision_layer = 2
 collision_mask = 137
 script = ExtResource("1_g2els")
 damage = 4
-max_health = 100
-speed = 35
+max_health = 1000
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_3vyb7")
@@ -986,16 +985,13 @@ position = Vector2(26, -1)
 shape = SubResource("RectangleShape2D_e5n5u")
 debug_color = Color(0.861707, 0.173194, 0.773309, 0.42)
 
-[node name="DamageReceiver" type="Area2D" parent="."]
+[node name="DamageReceiver" parent="." instance=ExtResource("20_mtg77")]
 collision_layer = 16
-collision_mask = 0
-monitoring = false
-script = ExtResource("17_jb4us")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageReceiver"]
+[node name="CollisionShape2D" parent="DamageReceiver" index="0"]
 position = Vector2(-8, -52)
-shape = SubResource("RectangleShape2D_ba010")
-debug_color = Color(0.568168, 0.556813, 3.85046e-07, 0.42)
+shape = SubResource("RectangleShape2D_j6wef")
+debug_color = Color(0.566286, 0.557358, 0.0196054, 0.42)
 
 [node name="CollectibleSensor" type="Area2D" parent="."]
 collision_layer = 0
@@ -1028,3 +1024,5 @@ position = Vector2(-37, 10)
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Hurt1" method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Hurt2" method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Wakeup" method="_on_animation_player_animation_finished"]
+
+[editable path="DamageReceiver"]
