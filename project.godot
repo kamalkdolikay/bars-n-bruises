@@ -13,11 +13,10 @@ config_version=5
 config/name="Bars N Bruises"
 run/main_scene="uid://bt30n2e3pnibn"
 config/features=PackedStringArray("4.4", "GL Compatibility")
-config/icon="res://icon.svg"
 
 [autoload]
 
-EntityManager="*res://utils/entity_manager.gd"
+EntityManager="*res://src/core/systems/entity_manager.gd"
 
 [display]
 

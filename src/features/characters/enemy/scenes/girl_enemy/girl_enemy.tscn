@@ -1,25 +1,25 @@
 [gd_scene load_steps=38 format=3 uid="uid://ot7grpne33p"]
 
-[ext_resource type="Script" uid="uid://bge70f7flbw1" path="res://scripts/enemy/girl_enemy.gd" id="1_1o6xl"]
-[ext_resource type="Texture2D" uid="uid://hk8hci84w33d" path="res://assets/enemy/BattingGirl_Idle-Sheet.png" id="2_1o6xl"]
-[ext_resource type="Texture2D" uid="uid://dcick7msx4fvn" path="res://assets/enemy/BattingGirl_Walk-Sheet.png" id="3_upr5f"]
-[ext_resource type="Script" uid="uid://bjqwo0d2g8473" path="res://scripts/enemy/state_machine.gd" id="4_4bqc8"]
-[ext_resource type="Texture2D" uid="uid://ccuq8kntcl7f" path="res://assets/enemy/BattingGirl_Hurt-Sheet.png" id="4_ja4ny"]
-[ext_resource type="Script" uid="uid://dxonndlpdksit" path="res://scripts/enemy/idle_state.gd" id="5_v2vgt"]
-[ext_resource type="Texture2D" uid="uid://7ja8na4u3ykt" path="res://assets/enemy/BattingGirl_attack01-Sheet.png" id="5_yg2de"]
-[ext_resource type="Script" uid="uid://cfbhn5081cyf7" path="res://scripts/enemy/walk_state.gd" id="6_040tv"]
-[ext_resource type="Texture2D" uid="uid://dy6yxyqfflnid" path="res://assets/enemy/BattingGirl_attack02-Sheet.png" id="6_btta6"]
-[ext_resource type="Script" uid="uid://bxors862xyqs0" path="res://scenes/colliders/enemy_damage_receiver.gd" id="7_0p3jp"]
-[ext_resource type="Texture2D" uid="uid://cf713avxk2wx1" path="res://assets/enemy/BattingGirl_attack03-Sheet.png" id="7_cq4ee"]
-[ext_resource type="Script" uid="uid://fp08417gbwba" path="res://scripts/enemy/hurt_1_state.gd" id="8_o77e2"]
-[ext_resource type="Script" uid="uid://cy2tw2t5rtv3e" path="res://scripts/enemy/hurt_2_state.gd" id="8_vnfr6"]
-[ext_resource type="Script" uid="uid://d3lnwej4foioj" path="res://scripts/enemy/wakeup_state.gd" id="9_5xcxg"]
-[ext_resource type="Script" uid="uid://bml1ng4qx84qu" path="res://scripts/enemy/fly_state.gd" id="11_8455d"]
-[ext_resource type="Script" uid="uid://u3hvwct05uq6" path="res://scripts/enemy/fall_state.gd" id="12_mh60c"]
-[ext_resource type="Script" uid="uid://b1p8u122mw57x" path="res://scripts/enemy/attack_1_state.gd" id="16_5t3pc"]
-[ext_resource type="Script" uid="uid://ciwc0ik06v3e8" path="res://scripts/enemy/attack_2_state.gd" id="17_kmlv8"]
-[ext_resource type="Script" uid="uid://d05yawi8wr51f" path="res://scripts/enemy/prep_attack_state.gd" id="17_kyowj"]
-[ext_resource type="Script" uid="uid://dwqpnn7gvmtls" path="res://scripts/enemy/attack_3_state.gd" id="18_fxsuw"]
+[ext_resource type="Script" uid="uid://bge70f7flbw1" path="res://src/features/characters/enemy/scenes/girl_enemy/girl_enemy.gd" id="1_1o6xl"]
+[ext_resource type="Texture2D" uid="uid://hk8hci84w33d" path="res://src/assets/sprites/characters/enemy/BattingGirl_Idle-Sheet.png" id="2_1o6xl"]
+[ext_resource type="Texture2D" uid="uid://dcick7msx4fvn" path="res://src/assets/sprites/characters/enemy/BattingGirl_Walk-Sheet.png" id="3_upr5f"]
+[ext_resource type="Script" uid="uid://bjqwo0d2g8473" path="res://src/features/characters/enemy/state_machine.gd" id="4_4bqc8"]
+[ext_resource type="Texture2D" uid="uid://ccuq8kntcl7f" path="res://src/assets/sprites/characters/enemy/BattingGirl_Hurt-Sheet.png" id="4_ja4ny"]
+[ext_resource type="Script" uid="uid://dxonndlpdksit" path="res://src/features/characters/enemy/states/idle_state.gd" id="5_v2vgt"]
+[ext_resource type="Texture2D" uid="uid://7ja8na4u3ykt" path="res://src/assets/sprites/characters/enemy/BattingGirl_attack01-Sheet.png" id="5_yg2de"]
+[ext_resource type="Script" uid="uid://cfbhn5081cyf7" path="res://src/features/characters/enemy/states/walk_state.gd" id="6_040tv"]
+[ext_resource type="Texture2D" uid="uid://dy6yxyqfflnid" path="res://src/assets/sprites/characters/enemy/BattingGirl_attack02-Sheet.png" id="6_btta6"]
+[ext_resource type="Script" uid="uid://bxors862xyqs0" path="res://src/features/colliders/enemy_damage_receiver.gd" id="7_0p3jp"]
+[ext_resource type="Texture2D" uid="uid://cf713avxk2wx1" path="res://src/assets/sprites/characters/enemy/BattingGirl_attack03-Sheet.png" id="7_cq4ee"]
+[ext_resource type="Script" uid="uid://fp08417gbwba" path="res://src/features/characters/enemy/states/hurt_1_state.gd" id="8_o77e2"]
+[ext_resource type="Script" uid="uid://cy2tw2t5rtv3e" path="res://src/features/characters/enemy/states/hurt_2_state.gd" id="8_vnfr6"]
+[ext_resource type="Script" uid="uid://d3lnwej4foioj" path="res://src/features/characters/enemy/states/wakeup_state.gd" id="9_5xcxg"]
+[ext_resource type="Script" uid="uid://bml1ng4qx84qu" path="res://src/features/characters/enemy/states/fly_state.gd" id="11_8455d"]
+[ext_resource type="Script" uid="uid://u3hvwct05uq6" path="res://src/features/characters/enemy/states/fall_state.gd" id="12_mh60c"]
+[ext_resource type="Script" uid="uid://b1p8u122mw57x" path="res://src/features/characters/enemy/states/attack_1_state.gd" id="16_5t3pc"]
+[ext_resource type="Script" uid="uid://ciwc0ik06v3e8" path="res://src/features/characters/enemy/states/attack_2_state.gd" id="17_kmlv8"]
+[ext_resource type="Script" uid="uid://d05yawi8wr51f" path="res://src/features/characters/enemy/states/prep_attack_state.gd" id="17_kyowj"]
+[ext_resource type="Script" uid="uid://dwqpnn7gvmtls" path="res://src/features/characters/enemy/states/attack_3_state.gd" id="18_fxsuw"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_040tv"]
 radius = 4.0
@@ -501,6 +501,59 @@ tracks/3/keys = {
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
 }
 
+[sub_resource type="Animation" id="Animation_kyowj"]
+resource_name = "prep_attack"
+length = 0.133
+step = 0.0666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_yg2de")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.0666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
 [sub_resource type="Animation" id="Animation_5xcxg"]
 resource_name = "wakeup"
 length = 0.3
@@ -606,59 +659,6 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5]
-}
-
-[sub_resource type="Animation" id="Animation_kyowj"]
-resource_name = "prep_attack"
-length = 0.133
-step = 0.0666667
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("5_yg2de")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [5]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:vframes")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D:frame")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.0666667),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [0, 1]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4bqc8"]

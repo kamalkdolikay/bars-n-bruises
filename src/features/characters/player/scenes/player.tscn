@@ -1,26 +1,26 @@
 [gd_scene load_steps=43 format=3 uid="uid://gp0muuff0noy"]
 
-[ext_resource type="Texture2D" uid="uid://chi2u85rf4ru3" path="res://assets/player/Bancho_Idle.png" id="1_3vyb7"]
-[ext_resource type="Script" uid="uid://c6ajiixwkldx8" path="res://scripts/player/player.gd" id="1_g2els"]
-[ext_resource type="Texture2D" uid="uid://c87yj4mwedem2" path="res://assets/player/Bancho_walk.png" id="3_qhqgy"]
-[ext_resource type="Script" uid="uid://bj1e3mpt3hafk" path="res://scripts/player/state_machine.gd" id="4_dqkch"]
-[ext_resource type="Texture2D" uid="uid://djhsa0wqek5fr" path="res://assets/player/Bancho_Jump.png" id="4_fjrip"]
-[ext_resource type="Script" uid="uid://ctoy1wy2ufrx7" path="res://scripts/player/idle_state.gd" id="5_qlg0r"]
-[ext_resource type="Texture2D" uid="uid://c5buxm2uerdjn" path="res://assets/player/Bancho_attack1.png" id="6_d2wvv"]
-[ext_resource type="Script" uid="uid://cvm6wta7f22g8" path="res://scripts/player/walk_state.gd" id="6_tuyoq"]
-[ext_resource type="Texture2D" uid="uid://dc7tdtwl5shob" path="res://assets/player/Bancho_attack2.png" id="7_3v2ag"]
-[ext_resource type="Texture2D" uid="uid://c87q7ugd0kri1" path="res://assets/player/Bancho_attack3.png" id="8_oprun"]
-[ext_resource type="Script" uid="uid://bbcgvvxycvf7b" path="res://scripts/player/jump_state.gd" id="8_smehm"]
-[ext_resource type="Texture2D" uid="uid://dm5r16cwxw7sg" path="res://assets/player/Bancho_Hurt.png" id="9_ur7pv"]
-[ext_resource type="Texture2D" uid="uid://dojsurwx2e5qi" path="res://assets/player/Bancho_Wakeup.png" id="9_vhx6d"]
-[ext_resource type="Script" uid="uid://d2fskp1pkbw21" path="res://scripts/player/attack_1_state.gd" id="10_y4r1p"]
-[ext_resource type="Script" uid="uid://c2mxwadwkl0ex" path="res://scripts/player/attack_2_state.gd" id="13_jej6c"]
-[ext_resource type="Script" uid="uid://c5l6cljbxe78d" path="res://scripts/player/attack_3_state.gd" id="14_f1ej7"]
-[ext_resource type="Script" uid="uid://crkkjly7lg45q" path="res://scripts/player/hurt_1_state.gd" id="16_ba010"]
-[ext_resource type="Script" uid="uid://bl80imaufdmc0" path="res://scenes/colliders/player_damage_receiver.gd" id="17_jb4us"]
-[ext_resource type="Script" uid="uid://b1ei3lcf1jlyc" path="res://scripts/player/hurt_2_state.gd" id="17_ux0ro"]
-[ext_resource type="Script" uid="uid://2p6uunft5557" path="res://scripts/player/wakeup_state.gd" id="19_2smwq"]
-[ext_resource type="PackedScene" uid="uid://b1xao5f43h2g8" path="res://scenes/character/enemy_slot.tscn" id="21_x06ku"]
+[ext_resource type="Texture2D" uid="uid://chi2u85rf4ru3" path="res://src/assets/sprites/characters/player/Bancho_Idle.png" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://c6ajiixwkldx8" path="res://src/features/characters/player/scenes/player.gd" id="1_g2els"]
+[ext_resource type="Texture2D" uid="uid://c87yj4mwedem2" path="res://src/assets/sprites/characters/player/Bancho_walk.png" id="3_qhqgy"]
+[ext_resource type="Script" uid="uid://bj1e3mpt3hafk" path="res://src/features/characters/player/state_machine.gd" id="4_dqkch"]
+[ext_resource type="Texture2D" uid="uid://djhsa0wqek5fr" path="res://src/assets/sprites/characters/player/Bancho_Jump.png" id="4_fjrip"]
+[ext_resource type="Script" uid="uid://ctoy1wy2ufrx7" path="res://src/features/characters/player/states/idle_state.gd" id="5_qlg0r"]
+[ext_resource type="Texture2D" uid="uid://c5buxm2uerdjn" path="res://src/assets/sprites/characters/player/Bancho_attack1.png" id="6_d2wvv"]
+[ext_resource type="Script" uid="uid://cvm6wta7f22g8" path="res://src/features/characters/player/states/walk_state.gd" id="6_tuyoq"]
+[ext_resource type="Texture2D" uid="uid://dc7tdtwl5shob" path="res://src/assets/sprites/characters/player/Bancho_attack2.png" id="7_3v2ag"]
+[ext_resource type="Texture2D" uid="uid://c87q7ugd0kri1" path="res://src/assets/sprites/characters/player/Bancho_attack3.png" id="8_oprun"]
+[ext_resource type="Script" uid="uid://bbcgvvxycvf7b" path="res://src/features/characters/player/states/jump_state.gd" id="8_smehm"]
+[ext_resource type="Texture2D" uid="uid://dm5r16cwxw7sg" path="res://src/assets/sprites/characters/player/Bancho_Hurt.png" id="9_ur7pv"]
+[ext_resource type="Texture2D" uid="uid://dojsurwx2e5qi" path="res://src/assets/sprites/characters/player/Bancho_Wakeup.png" id="9_vhx6d"]
+[ext_resource type="Script" uid="uid://d2fskp1pkbw21" path="res://src/features/characters/player/states/attack_1_state.gd" id="10_y4r1p"]
+[ext_resource type="Script" uid="uid://c2mxwadwkl0ex" path="res://src/features/characters/player/states/attack_2_state.gd" id="13_jej6c"]
+[ext_resource type="Script" uid="uid://c5l6cljbxe78d" path="res://src/features/characters/player/states/attack_3_state.gd" id="14_f1ej7"]
+[ext_resource type="Script" uid="uid://crkkjly7lg45q" path="res://src/features/characters/player/states/hurt_1_state.gd" id="16_ba010"]
+[ext_resource type="Script" uid="uid://bl80imaufdmc0" path="res://src/features/colliders/player_damage_receiver.gd" id="17_jb4us"]
+[ext_resource type="Script" uid="uid://b1ei3lcf1jlyc" path="res://src/features/characters/player/states/hurt_2_state.gd" id="17_ux0ro"]
+[ext_resource type="Script" uid="uid://2p6uunft5557" path="res://src/features/characters/player/states/wakeup_state.gd" id="19_2smwq"]
+[ext_resource type="PackedScene" uid="uid://b1xao5f43h2g8" path="res://src/features/characters/enemy/scenes/enemy_slot/enemy_slot.tscn" id="21_x06ku"]
 
 [sub_resource type="Animation" id="Animation_g2els"]
 length = 0.001
@@ -963,7 +963,7 @@ player = NodePath("../..")
 [node name="Hurt1" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("16_ba010")
 player = NodePath("../..")
-knockback_intensity = 100.0
+knockback_intensity = 20.0
 
 [node name="Hurt2" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("17_ux0ro")
@@ -1021,5 +1021,10 @@ position = Vector2(-38, -14)
 [node name="EnemySlot4" parent="EnemySlots" instance=ExtResource("21_x06ku")]
 position = Vector2(-37, 10)
 
+[connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Jump" method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Attack1" method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Attack2" method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Attack3" method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Hurt1" method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Hurt2" method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Wakeup" method="_on_animation_player_animation_finished"]

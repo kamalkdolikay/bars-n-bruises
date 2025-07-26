@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://dwvtud1w4ogdb"]
 
-[ext_resource type="Texture2D" uid="uid://brbtfyyu5xmqq" path="res://assets/props/barrel-2.png" id="1_i1o76"]
-[ext_resource type="Script" uid="uid://omq4fmu2r2ws" path="res://scenes/props/barrel.gd" id="1_nhfpi"]
-[ext_resource type="Script" uid="uid://5vpuy7jl7ptt" path="res://scenes/colliders/damage_receiver.gd" id="2_mvosc"]
+[ext_resource type="Texture2D" uid="uid://brbtfyyu5xmqq" path="res://src/assets/sprites/props/barrel-2.png" id="1_i1o76"]
+[ext_resource type="Script" uid="uid://omq4fmu2r2ws" path="res://src/features/props/barrel/barrel.gd" id="1_nhfpi"]
+[ext_resource type="Script" uid="uid://5vpuy7jl7ptt" path="res://src/features/colliders/damage_receiver.gd" id="2_mvosc"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i1o76"]
 radius = 3.0

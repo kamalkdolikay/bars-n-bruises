@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bbmlwmirjpy7a"]
 
-[ext_resource type="Script" uid="uid://sfcweu5ooofm" path="res://scenes/props/collectible.gd" id="1_drq62"]
+[ext_resource type="Script" uid="uid://sfcweu5ooofm" path="res://src/features/props/collectible.gd" id="1_drq62"]
 
 [node name="Collectible" type="Area2D"]
 collision_layer = 0

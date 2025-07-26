@@ -1,11 +1,11 @@
 [gd_scene load_steps=9 format=3 uid="uid://bt30n2e3pnibn"]
 
-[ext_resource type="Texture2D" uid="uid://duf8c32vvbslj" path="res://assets/props/preview_stage.png" id="1_nnsk1"]
-[ext_resource type="Script" uid="uid://cp7bcaohqmpng" path="res://scenes/world.gd" id="1_qfnet"]
-[ext_resource type="Script" uid="uid://vqun3qa71msq" path="res://scenes/stage/actors_container.gd" id="2_qfnet"]
-[ext_resource type="PackedScene" uid="uid://gp0muuff0noy" path="res://scenes/character/player.tscn" id="2_rwgxs"]
-[ext_resource type="PackedScene" uid="uid://dwvtud1w4ogdb" path="res://scenes/props/barrel.tscn" id="3_4wyf3"]
-[ext_resource type="PackedScene" uid="uid://ot7grpne33p" path="res://scenes/character/girl_enemy.tscn" id="7_i7141"]
+[ext_resource type="Script" uid="uid://cp7bcaohqmpng" path="res://src/stage/world.gd" id="1_2on0i"]
+[ext_resource type="Texture2D" uid="uid://duf8c32vvbslj" path="res://src/assets/sprites/props/preview_stage.png" id="2_k8afk"]
+[ext_resource type="Script" uid="uid://vqun3qa71msq" path="res://src/stage/actors_container.gd" id="3_fliux"]
+[ext_resource type="PackedScene" uid="uid://gp0muuff0noy" path="res://src/features/player/scenes/player.tscn" id="4_xtuhf"]
+[ext_resource type="PackedScene" uid="uid://dwvtud1w4ogdb" path="res://src/features/props/barrel/barrel.tscn" id="5_kvsum"]
+[ext_resource type="PackedScene" uid="uid://ot7grpne33p" path="res://src/features/enemy/scenes/girl_enemy/girl_enemy.tscn" id="6_luwwy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_71j4m"]
 size = Vector2(1262, 106)
@@ -14,17 +14,17 @@ size = Vector2(1262, 106)
 size = Vector2(6, 349)
 
 [node name="World" type="Node2D"]
-script = ExtResource("1_qfnet")
+script = ExtResource("1_2on0i")
 
 [node name="Backgrounds" type="Node2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="Backgrounds"]
-texture = ExtResource("1_nnsk1")
+texture = ExtResource("2_k8afk")
 centered = false
 
 [node name="Sprite2D2" type="Sprite2D" parent="Backgrounds"]
 position = Vector2(-1, 109)
-texture = ExtResource("1_nnsk1")
+texture = ExtResource("2_k8afk")
 centered = false
 
 [node name="WorldColliders" type="Node2D" parent="."]
@@ -71,38 +71,38 @@ shape = SubResource("RectangleShape2D_qfnet")
 
 [node name="ActorsContainer" type="Node2D" parent="."]
 y_sort_enabled = true
-script = ExtResource("2_qfnet")
+script = ExtResource("3_fliux")
 
-[node name="Player" parent="ActorsContainer" instance=ExtResource("2_rwgxs")]
+[node name="Player" parent="ActorsContainer" instance=ExtResource("4_xtuhf")]
 position = Vector2(230, 301)
 
-[node name="Barrel" parent="ActorsContainer" instance=ExtResource("3_4wyf3")]
+[node name="Barrel" parent="ActorsContainer" instance=ExtResource("5_kvsum")]
 position = Vector2(300, 296)
 
-[node name="Barrel2" parent="ActorsContainer" instance=ExtResource("3_4wyf3")]
+[node name="Barrel2" parent="ActorsContainer" instance=ExtResource("5_kvsum")]
 position = Vector2(96, 245)
 collectible_type = 1
 
-[node name="Barrel3" parent="ActorsContainer" instance=ExtResource("3_4wyf3")]
+[node name="Barrel3" parent="ActorsContainer" instance=ExtResource("5_kvsum")]
 position = Vector2(119, 322)
 collectible_type = 2
 
-[node name="GirlEnemy" parent="ActorsContainer" node_paths=PackedStringArray("player") instance=ExtResource("7_i7141")]
+[node name="GirlEnemy" parent="ActorsContainer" node_paths=PackedStringArray("player") instance=ExtResource("6_luwwy")]
 position = Vector2(311, 242)
 player = NodePath("../Player")
 
-[node name="GirlEnemy2" parent="ActorsContainer" node_paths=PackedStringArray("player") instance=ExtResource("7_i7141")]
+[node name="GirlEnemy2" parent="ActorsContainer" node_paths=PackedStringArray("player") instance=ExtResource("6_luwwy")]
 position = Vector2(423, 292)
 player = NodePath("../Player")
 
-[node name="GirlEnemy3" parent="ActorsContainer" node_paths=PackedStringArray("player") instance=ExtResource("7_i7141")]
+[node name="GirlEnemy3" parent="ActorsContainer" node_paths=PackedStringArray("player") instance=ExtResource("6_luwwy")]
 position = Vector2(213, 246)
 player = NodePath("../Player")
 
-[node name="GirlEnemy4" parent="ActorsContainer" node_paths=PackedStringArray("player") instance=ExtResource("7_i7141")]
+[node name="GirlEnemy4" parent="ActorsContainer" node_paths=PackedStringArray("player") instance=ExtResource("6_luwwy")]
 position = Vector2(75, 329)
 player = NodePath("../Player")
 
-[node name="GirlEnemy5" parent="ActorsContainer" node_paths=PackedStringArray("player") instance=ExtResource("7_i7141")]
+[node name="GirlEnemy5" parent="ActorsContainer" node_paths=PackedStringArray("player") instance=ExtResource("6_luwwy")]
 position = Vector2(66, 239)
 player = NodePath("../Player")

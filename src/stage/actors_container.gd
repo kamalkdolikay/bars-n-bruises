@@ -7,9 +7,9 @@ extends Node2D
 
 # Constants
 const COLLECTIBLE_MAP := {
-	Collectible.Type.FOOD1: preload("res://scenes/props/chicken.tscn"),
-	Collectible.Type.FOOD2: preload("res://scenes/props/chicken_2.tscn"),
-	Collectible.Type.FOOD3: preload("res://scenes/props/chicken_3.tscn"),
+	Collectible.Type.FOOD1: preload("res://src/features/props/chicken_1/chicken_1.tscn"),
+	Collectible.Type.FOOD2: preload("res://src/features/props/chicken_2/chicken_2.tscn"),
+	Collectible.Type.FOOD3: preload("res://src/features/props/chicken_3/chicken_3.tscn"),
 }
 
 # Signals and Connections
