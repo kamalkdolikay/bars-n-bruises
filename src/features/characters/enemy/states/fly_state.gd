@@ -12,6 +12,9 @@ func update(_delta: float) -> void:
 	enemy.velocity = direction * enemy.flight_speed
 	enemy.move_and_slide()
 
+func _on_collateral_damage_emitter_body_entered(_wall: AnimatableBody2D) -> void:
+	transition.emit(enemy.states[enemy.State.FALL])
+
 func exit() -> void:
 	enemy.stop_animation()
 	enemy.collision_shape.set_deferred("disabled", false)
