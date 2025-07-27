@@ -1,14 +1,14 @@
 [gd_scene load_steps=38 format=3 uid="uid://ot7grpne33p"]
 
 [ext_resource type="Script" uid="uid://bge70f7flbw1" path="res://src/features/characters/enemy/scenes/girl_enemy/girl_enemy.gd" id="1_1o6xl"]
-[ext_resource type="Texture2D" uid="uid://hk8hci84w33d" path="res://src/assets/sprites/characters/enemy/BattingGirl_Idle-Sheet.png" id="2_1o6xl"]
-[ext_resource type="Texture2D" uid="uid://dcick7msx4fvn" path="res://src/assets/sprites/characters/enemy/BattingGirl_Walk-Sheet.png" id="3_upr5f"]
-[ext_resource type="Texture2D" uid="uid://ccuq8kntcl7f" path="res://src/assets/sprites/characters/enemy/BattingGirl_Hurt-Sheet.png" id="4_ja4ny"]
+[ext_resource type="Texture2D" uid="uid://hk8hci84w33d" path="res://src/assets/sprites/characters/enemy/batting_girl/BattingGirl_Idle-Sheet.png" id="2_1o6xl"]
+[ext_resource type="Texture2D" uid="uid://dcick7msx4fvn" path="res://src/assets/sprites/characters/enemy/batting_girl/BattingGirl_Walk-Sheet.png" id="3_upr5f"]
+[ext_resource type="Texture2D" uid="uid://ccuq8kntcl7f" path="res://src/assets/sprites/characters/enemy/batting_girl/BattingGirl_Hurt-Sheet.png" id="4_ja4ny"]
 [ext_resource type="Script" uid="uid://dxonndlpdksit" path="res://src/features/characters/enemy/states/idle_state.gd" id="5_v2vgt"]
-[ext_resource type="Texture2D" uid="uid://7ja8na4u3ykt" path="res://src/assets/sprites/characters/enemy/BattingGirl_attack01-Sheet.png" id="5_yg2de"]
+[ext_resource type="Texture2D" uid="uid://7ja8na4u3ykt" path="res://src/assets/sprites/characters/enemy/batting_girl/BattingGirl_attack01-Sheet.png" id="5_yg2de"]
 [ext_resource type="Script" uid="uid://cfbhn5081cyf7" path="res://src/features/characters/enemy/states/walk_state.gd" id="6_040tv"]
-[ext_resource type="Texture2D" uid="uid://dy6yxyqfflnid" path="res://src/assets/sprites/characters/enemy/BattingGirl_attack02-Sheet.png" id="6_btta6"]
-[ext_resource type="Texture2D" uid="uid://cf713avxk2wx1" path="res://src/assets/sprites/characters/enemy/BattingGirl_attack03-Sheet.png" id="7_cq4ee"]
+[ext_resource type="Texture2D" uid="uid://dy6yxyqfflnid" path="res://src/assets/sprites/characters/enemy/batting_girl/BattingGirl_attack02-Sheet.png" id="6_btta6"]
+[ext_resource type="Texture2D" uid="uid://cf713avxk2wx1" path="res://src/assets/sprites/characters/enemy/batting_girl/BattingGirl_attack03-Sheet.png" id="7_cq4ee"]
 [ext_resource type="PackedScene" uid="uid://ddpirwp3rfa4" path="res://src/features/characters/state_machine/state_machine.tscn" id="8_3xmia"]
 [ext_resource type="Script" uid="uid://fp08417gbwba" path="res://src/features/characters/enemy/states/hurt_1_state.gd" id="8_o77e2"]
 [ext_resource type="Script" uid="uid://cy2tw2t5rtv3e" path="res://src/features/characters/enemy/states/hurt_2_state.gd" id="8_vnfr6"]
@@ -237,6 +237,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_mh60c"]
 resource_name = "fall"
+length = 0.1
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
