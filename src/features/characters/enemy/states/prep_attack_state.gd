@@ -1,7 +1,7 @@
 class_name EnemyPrepAttackState
 extends CharacterState
 
-@export var enemy: EnemyCharacter
+@export var enemy: BaseEnemy
 
 func enter() -> void:
 	enemy.play_animation("prep_attack")

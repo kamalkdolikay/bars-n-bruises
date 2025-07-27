@@ -116,7 +116,7 @@ func _get_hit_direction(target: Node2D) -> Vector2:
 	return Vector2.LEFT if target.global_position.x < global_position.x else Vector2.RIGHT
 
 # Slot Management
-func reserve_slot(enemy: EnemyCharacter) -> EnemySlot:
+func reserve_slot(enemy: BaseEnemy) -> EnemySlot:
 	var available_slots: Array = enemy_slots.filter(
 		func(slot: EnemySlot) -> bool:
 			return slot.is_free()
@@ -135,7 +135,7 @@ func reserve_slot(enemy: EnemyCharacter) -> EnemySlot:
 	selected_slot.occupy(enemy)
 	return selected_slot
 
-func free_slot(enemy: EnemyCharacter) -> void:
+func free_slot(enemy: BaseEnemy) -> void:
 	for slot in enemy_slots:
 		if slot.occupant == enemy:
 			slot.free_up()

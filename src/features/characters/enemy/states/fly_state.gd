@@ -1,7 +1,7 @@
 class_name EnemyFlyState
 extends CharacterState
 
-@export var enemy: EnemyCharacter
+@export var enemy: BaseEnemy
 
 func enter() -> void:
 	enemy.collision_shape.set_deferred("disabled", true)	

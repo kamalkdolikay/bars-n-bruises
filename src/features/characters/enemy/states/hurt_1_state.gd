@@ -1,7 +1,7 @@
 class_name EnemyHurtState1
 extends CharacterState
 
-@export var enemy: EnemyCharacter
+@export var enemy: BaseEnemy
 @export var knockback_intensity: float
 
 var is_knocked_out: bool = false

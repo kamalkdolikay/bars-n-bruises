@@ -1,7 +1,7 @@
 class_name EnemyAttack2
 extends CharacterState
 
-@export var enemy: EnemyCharacter
+@export var enemy: BaseEnemy
 @onready var damage_emitter: Area2D = $"../../DamageEmitter"
 
 func enter() -> void:

@@ -1,7 +1,7 @@
 class_name EnemySlot
 extends Node2D
 
-var occupant: EnemyCharacter = null
+var occupant: BaseEnemy = null
 
 func is_free() -> bool:
 	return occupant == null
@@ -9,5 +9,5 @@ func is_free() -> bool:
 func free_up() -> void:
 	occupant = null
 	
-func occupy(enemy: EnemyCharacter) -> void:
+func occupy(enemy: BaseEnemy) -> void:
 	occupant = enemy

@@ -1,7 +1,7 @@
 class_name EnemyHurtState2
 extends CharacterState
 
-@export var enemy: EnemyCharacter
+@export var enemy: BaseEnemy
 @export var knockback_intensity: float
 
 const WAKEUP_DELAY := 0.5

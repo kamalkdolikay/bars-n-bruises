@@ -1,7 +1,7 @@
 class_name EnemyWalkState
 extends CharacterState
 
-@export var enemy: EnemyCharacter
+@export var enemy: BaseEnemy
 
 func enter() -> void:
 	enemy.play_animation((enemy.states[enemy.State.WALK]).to_lower())

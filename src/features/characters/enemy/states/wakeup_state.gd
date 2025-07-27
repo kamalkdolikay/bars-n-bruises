@@ -1,7 +1,7 @@
 class_name EnemyWakeupState
 extends CharacterState
 
-@export var enemy: EnemyCharacter
+@export var enemy: BaseEnemy
 
 func enter() -> void:
 	enemy.play_animation((enemy.states[enemy.State.WAKEUP]).to_lower())
