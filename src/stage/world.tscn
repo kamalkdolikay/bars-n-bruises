@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bt30n2e3pnibn"]
+[gd_scene load_steps=10 format=3 uid="uid://bt30n2e3pnibn"]
 
 [ext_resource type="Script" uid="uid://cp7bcaohqmpng" path="res://src/stage/world.gd" id="1_2on0i"]
 [ext_resource type="Texture2D" uid="uid://duf8c32vvbslj" path="res://src/assets/sprites/props/preview_stage.png" id="2_k8afk"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://gp0muuff0noy" path="res://src/features/characters/player/scenes/player.tscn" id="4_xtuhf"]
 [ext_resource type="PackedScene" uid="uid://dwvtud1w4ogdb" path="res://src/features/props/barrel/barrel.tscn" id="5_kvsum"]
 [ext_resource type="PackedScene" uid="uid://ot7grpne33p" path="res://src/features/characters/enemy/scenes/girl_enemy/girl_enemy.tscn" id="6_luwwy"]
+[ext_resource type="PackedScene" uid="uid://bg4nj5mmcgo4h" path="res://src/features/characters/enemy/scenes/boss_enemy/boss_enemy.tscn" id="7_k8afk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_71j4m"]
 size = Vector2(1262, 106)
@@ -105,4 +106,8 @@ player = NodePath("../Player")
 
 [node name="GirlEnemy5" parent="ActorsContainer" node_paths=PackedStringArray("player") instance=ExtResource("6_luwwy")]
 position = Vector2(66, 239)
+player = NodePath("../Player")
+
+[node name="BossEnemy" parent="ActorsContainer" node_paths=PackedStringArray("player") instance=ExtResource("7_k8afk")]
+position = Vector2(650, 295)
 player = NodePath("../Player")
