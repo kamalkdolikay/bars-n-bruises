@@ -3,6 +3,8 @@ extends BaseCharacter
 
 # Nodes
 @onready var state_machine: CharacterStateMachine = $StateMachine
+@onready var collateral_emitter: Area2D = $CollateralDamageEmitter
+@onready var collateral_shape: CollisionShape2D = $CollateralDamageEmitter/CollisionShape2D
 
 # Exported Variables
 @export var player: PlayerCharacter
@@ -34,6 +36,18 @@ var player_slot: EnemySlot = null
 var slot_check_timer: float = 0.0
 var last_attack_time: int = 0
 var last_prep_time: int = 0
+var initial_collateral_position: Vector2
+
+# Initialization
+func _ready() -> void:
+	super._ready()
+	# Connect signals
+	collateral_emitter.area_entered.connect(on_emit_collateral_damage)
+	# Init state
+	initial_collateral_position = collateral_shape.position
+	# Attempt initial slot reservation
+	if player and not player_slot:
+		player_slot = player.reserve_slot(self)
 
 # Frame Loop
 func _process(delta: float) -> void:
@@ -81,6 +95,7 @@ func get_sprite_position() -> void:
 	damage_emitter.scale.x = flip
 	collision_shape.position.x = initial_collision_position.x * flip
 	damage_shape.position.x = initial_damage_position.x * flip
+	collateral_shape.position.x = initial_collateral_position.x * flip
 
 func get_knockback_direction() -> Vector2:
 	return Vector2.RIGHT if get_facing_direction().x < 0 else Vector2.LEFT
@@ -136,3 +151,7 @@ func _on_receive_damage(damage_amount: int, _direction: Vector2, _hit_type: Dama
 func _on_emit_damage(target: Area2D) -> void:
 	var direction := Vector2.LEFT if get_facing_direction().x < 0 else Vector2.RIGHT
 	target.emit_damage(damage, direction, DamageReceiver.HitType.NORMAL)
+
+func on_emit_collateral_damage(target: DamageReceiver) -> void:
+	var direction := Vector2.LEFT if get_facing_direction().x < 0 else Vector2.RIGHT
+	target.emit_damage(0, direction, DamageReceiver.HitType.KNOCKDOWN)
