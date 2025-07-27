@@ -22,6 +22,10 @@
 [ext_resource type="PackedScene" uid="uid://dmo31lwma845v" path="res://src/features/colliders/damage_receiver.tscn" id="20_mtg77"]
 [ext_resource type="PackedScene" uid="uid://b1xao5f43h2g8" path="res://src/features/characters/enemy/scenes/enemy_slot/enemy_slot.tscn" id="21_x06ku"]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oprun"]
+radius = 5.0
+height = 42.0
+
 [sub_resource type="Animation" id="Animation_g2els"]
 length = 0.001
 tracks/0/type = "value"
@@ -893,10 +897,6 @@ _data = {
 &"walk": SubResource("Animation_qhqgy")
 }
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oprun"]
-radius = 5.0
-height = 42.0
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e5n5u"]
 size = Vector2(36, 13)
 
@@ -919,16 +919,16 @@ centered = false
 offset = Vector2(-50, -100)
 hframes = 7
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-8, -7)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_oprun")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_qhqgy")
 }
 autoplay = "idle"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-8, -7)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_oprun")
 
 [node name="StateMachine" parent="." node_paths=PackedStringArray("current_state") instance=ExtResource("10_mtg77")]
 current_state = NodePath("Idle")
