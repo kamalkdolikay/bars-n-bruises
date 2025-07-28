@@ -13,6 +13,9 @@ extends CharacterBody2D
 @export var damage: int
 @export var max_health: int
 @export var speed: int
+@export var type: Type
+
+enum Type { PLAYER, GIRL, BOSS }
 
 # Internal Variables
 var current_health := 0
