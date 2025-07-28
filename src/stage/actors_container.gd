@@ -1,7 +1,7 @@
 # actors_container.gd
 # Description: Manages the spawning of actor nodes, such as collectibles, within the game world.
-# Author: [Your Name]
-# Last Modified: 2025-07-19
+# Author: Kamal Dolikay
+# Last Modified: 2025-07-27
 
 extends Node2D
 
@@ -20,9 +20,10 @@ const ENEMY_MAP := {
 }
 
 # Signals and Connections
-func _ready() -> void:
+func _init() -> void:
 	EntityManager.spawn_collecible.connect(on_spawn_collectible)
 	EntityManager.spawn_enemy.connect(on_spawn_enemy)
+	EntityManager.orphan_actor.connect(on_orphan_actor)
 
 # Public Methods
 # on_spawn_collectible: Handles the spawning of a collectible at the given global position.
@@ -44,3 +45,6 @@ func on_spawn_enemy(enemy_data: EnemyData) -> void:
 	enemy.global_position = enemy_data.global_position
 	enemy.player = player
 	add_child(enemy)
+	
+func on_orphan_actor(orphan: Node2D) -> void:
+	orphan.reparent(self)
