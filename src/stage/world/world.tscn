@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bt30n2e3pnibn"]
+[gd_scene load_steps=6 format=3 uid="uid://bt30n2e3pnibn"]
 
 [ext_resource type="Script" uid="uid://cp7bcaohqmpng" path="res://src/stage/world/world.gd" id="1_am5b7"]
 [ext_resource type="PackedScene" uid="uid://uivd1saa67ey" path="res://src/stage/stage_01/stage_01.tscn" id="2_wb50j"]
 [ext_resource type="Script" uid="uid://vqun3qa71msq" path="res://src/stage/actors_container.gd" id="3_2bkuq"]
 [ext_resource type="PackedScene" uid="uid://gp0muuff0noy" path="res://src/features/characters/player/types/player.tscn" id="4_c3dgs"]
-[ext_resource type="PackedScene" uid="uid://dwvtud1w4ogdb" path="res://src/features/props/barrel/barrel.tscn" id="5_x8oo0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qfnet"]
 size = Vector2(6, 349)
@@ -47,14 +46,3 @@ player = NodePath("Player")
 
 [node name="Player" parent="ActorsContainer" instance=ExtResource("4_c3dgs")]
 position = Vector2(230, 301)
-
-[node name="Barrel" parent="ActorsContainer" instance=ExtResource("5_x8oo0")]
-position = Vector2(300, 296)
-
-[node name="Barrel2" parent="ActorsContainer" instance=ExtResource("5_x8oo0")]
-position = Vector2(96, 245)
-collectible_type = 1
-
-[node name="Barrel3" parent="ActorsContainer" instance=ExtResource("5_x8oo0")]
-position = Vector2(119, 322)
-collectible_type = 2
