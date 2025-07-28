@@ -25,6 +25,7 @@ func start_wakeup_delay() -> void:
 	await get_tree().create_timer(WAKEUP_DELAY).timeout
 	if is_knocked_out and wakeup_started:
 		if enemy.is_dead():
+			EntityManager.death_enemy.emit(enemy)
 			play_fade_out_and_destroy()
 		else:
 			enemy.play_animation((enemy.states[enemy.State.WAKEUP]).to_lower())
