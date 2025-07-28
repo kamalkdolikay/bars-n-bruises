@@ -1,14 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://uivd1saa67ey"]
+[gd_scene load_steps=8 format=3 uid="uid://uivd1saa67ey"]
 
 [ext_resource type="Texture2D" uid="uid://duf8c32vvbslj" path="res://src/assets/sprites/props/preview_stage.png" id="1_dnqew"]
+[ext_resource type="Script" uid="uid://dg3cf6pvuqcia" path="res://src/stage/stage_01/stage_01.gd" id="1_jya2g"]
 [ext_resource type="PackedScene" uid="uid://chedjffvt7emj" path="res://src/stage/checkpoint/checkpoint.tscn" id="2_4tmra"]
 [ext_resource type="PackedScene" uid="uid://ot7grpne33p" path="res://src/features/characters/enemy/types/girl_enemy/girl_enemy.tscn" id="3_2o1u2"]
 [ext_resource type="PackedScene" uid="uid://bg4nj5mmcgo4h" path="res://src/features/characters/enemy/types/boss_enemy/boss_enemy.tscn" id="4_axqnj"]
+[ext_resource type="PackedScene" uid="uid://dwvtud1w4ogdb" path="res://src/features/props/barrel/barrel.tscn" id="5_ok67v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_60fcs"]
 size = Vector2(1262, 106)
 
 [node name="Stage-01" type="Node2D"]
+script = ExtResource("1_jya2g")
 
 [node name="Backgrounds" type="Node2D" parent="."]
 
@@ -75,6 +78,16 @@ position = Vector2(-52, 308)
 
 [node name="CollisionShape2D" parent="Checkpoints/Checkpoint2/CheckpointPlayArea" index="0"]
 position = Vector2(242, 175)
+
+[node name="Containers" type="Node2D" parent="."]
+
+[node name="Barrel" parent="Containers" instance=ExtResource("5_ok67v")]
+position = Vector2(387, 245)
+collectible_type = 1
+
+[node name="Barrel2" parent="Containers" instance=ExtResource("5_ok67v")]
+position = Vector2(860, 286)
+collectible_type = 2
 
 [editable path="Checkpoints/Checkpoint"]
 [editable path="Checkpoints/Checkpoint2"]
