@@ -75,6 +75,7 @@ func get_knockback_direction() -> Vector2:
 
 # Collectibles
 func on_collectible_entered(collectible: Area2D) -> void:
+	current_health = max_health
 	collectible.queue_free()
 
 # Damage Logic

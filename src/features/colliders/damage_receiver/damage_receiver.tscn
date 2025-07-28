@@ -1,11 +1,11 @@
 [gd_scene load_steps=2 format=3 uid="uid://dmo31lwma845v"]
 
-[ext_resource type="Script" uid="uid://5vpuy7jl7ptt" path="res://src/features/colliders/damage_receiver.gd" id="1_nypjl"]
+[ext_resource type="Script" uid="uid://5vpuy7jl7ptt" path="res://src/features/colliders/damage_receiver/damage_receiver.gd" id="1_bappa"]
 
 [node name="DamageReceiver" type="Area2D"]
 collision_layer = 0
 collision_mask = 0
 monitoring = false
-script = ExtResource("1_nypjl")
+script = ExtResource("1_bappa")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
