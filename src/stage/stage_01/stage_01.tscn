@@ -61,14 +61,17 @@ position = Vector2(121, 204)
 [node name="GirlEnemy" parent="Checkpoints/Checkpoint/Enemies" index="1" instance=ExtResource("3_2o1u2")]
 position = Vector2(269, -5)
 
-[node name="GirlEnemy2" parent="Checkpoints/Checkpoint/Enemies" index="2" instance=ExtResource("3_2o1u2")]
+[node name="GirlEnemy4" parent="Checkpoints/Checkpoint/Enemies" index="2" instance=ExtResource("3_2o1u2")]
+position = Vector2(112, 197)
+
+[node name="BossEnemy2" parent="Checkpoints/Checkpoint/Enemies" index="3" instance=ExtResource("4_axqnj")]
+position = Vector2(103, 203)
+
+[node name="GirlEnemy2" parent="Checkpoints/Checkpoint/Enemies" index="4" instance=ExtResource("3_2o1u2")]
 position = Vector2(-102, 340)
 
-[node name="GirlEnemy3" parent="Checkpoints/Checkpoint/Enemies" index="3" instance=ExtResource("3_2o1u2")]
+[node name="GirlEnemy3" parent="Checkpoints/Checkpoint/Enemies" index="5" instance=ExtResource("3_2o1u2")]
 position = Vector2(565, 241)
-
-[node name="GirlEnemy4" parent="Checkpoints/Checkpoint/Enemies" index="4" instance=ExtResource("3_2o1u2")]
-position = Vector2(562, 318)
 
 [node name="Checkpoint2" parent="Checkpoints" instance=ExtResource("2_4tmra")]
 position = Vector2(691, 0)
@@ -103,7 +106,7 @@ collectible_type = 2
 
 [node name="Door" parent="Doors" node_paths=PackedStringArray("enemies") instance=ExtResource("7_m31rl")]
 position = Vector2(289, 172)
-enemies = [NodePath("../../Checkpoints/Checkpoint/Enemies/BossEnemy")]
+enemies = [NodePath("../../Checkpoints/Checkpoint/Enemies/BossEnemy"), NodePath("../../Checkpoints/Checkpoint/Enemies/BossEnemy2"), NodePath("../../Checkpoints/Checkpoint/Enemies/GirlEnemy4")]
 
 [editable path="Checkpoints/Checkpoint"]
 [editable path="Checkpoints/Checkpoint2"]
