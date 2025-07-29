@@ -44,7 +44,11 @@ func on_spawn_enemy(enemy_data: EnemyData) -> void:
 	var enemy: BaseEnemy = ENEMY_MAP[enemy_data.type].instantiate()
 	enemy.global_position = enemy_data.global_position
 	enemy.player = player
+	enemy.ground_position = enemy_data.global_position.y
 	add_child(enemy)
+	
+	if enemy_data.height > 0:
+		enemy.state_machine.on_state_transition("Land1")
 	
 func on_orphan_actor(orphan: Node2D) -> void:
 	orphan.reparent(self)
