@@ -10,4 +10,4 @@ func update(_delta: float) -> void:
 	pass
 
 func exit() -> void:
-	enemy.astop_animation()
+	enemy.stop_animation()
