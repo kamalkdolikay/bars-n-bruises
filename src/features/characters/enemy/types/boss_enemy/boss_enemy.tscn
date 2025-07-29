@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://bg4nj5mmcgo4h"]
+[gd_scene load_steps=46 format=3 uid="uid://bg4nj5mmcgo4h"]
 
 [ext_resource type="Script" uid="uid://cxo7r5oxn751a" path="res://src/features/characters/enemy/types/boss_enemy/boss_enemy.gd" id="1_ujarj"]
 [ext_resource type="Texture2D" uid="uid://df3t11ce2tpnk" path="res://src/assets/sprites/characters/enemy/brute_arms/BruteArm_Idle.png" id="2_1k8gb"]
@@ -15,11 +15,14 @@
 [ext_resource type="Texture2D" uid="uid://ije6t54li6jx" path="res://src/assets/sprites/characters/enemy/brute_arms/BruteArm_attack03.png" id="7_yf5nf"]
 [ext_resource type="Script" uid="uid://bml1ng4qx84qu" path="res://src/features/characters/enemy/states/fly_state.gd" id="8_rgtek"]
 [ext_resource type="Texture2D" uid="uid://dmv0sjs574fuf" path="res://src/assets/sprites/characters/enemy/brute_arms/BruteArm_attack04.png" id="8_sid1q"]
+[ext_resource type="Texture2D" uid="uid://cfs434bdlhfhl" path="res://src/assets/sprites/characters/enemy/brute_arms/BruteArm_Jump.png" id="9_0l2ct"]
 [ext_resource type="Script" uid="uid://u3hvwct05uq6" path="res://src/features/characters/enemy/states/fall_state.gd" id="9_yf5nf"]
 [ext_resource type="Script" uid="uid://b1p8u122mw57x" path="res://src/features/characters/enemy/states/attack_1_state.gd" id="10_sid1q"]
 [ext_resource type="Script" uid="uid://ciwc0ik06v3e8" path="res://src/features/characters/enemy/states/attack_2_state.gd" id="11_4mkn3"]
 [ext_resource type="Script" uid="uid://dwqpnn7gvmtls" path="res://src/features/characters/enemy/states/attack_3_state.gd" id="12_2q0dk"]
 [ext_resource type="PackedScene" uid="uid://dmo31lwma845v" path="res://src/features/colliders/damage_receiver/damage_receiver.tscn" id="14_uoenr"]
+[ext_resource type="Script" uid="uid://p7tq43ghgt5m" path="res://src/features/characters/enemy/states/land_1_state.gd" id="21_70432"]
+[ext_resource type="Script" uid="uid://cjfcby573vfrs" path="res://src/features/characters/enemy/states/land_2_state.gd" id="22_tv1wr"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1k8gb"]
 radius = 5.0
@@ -1001,6 +1004,137 @@ tracks/4/keys = {
 "values": [0, 1, 2, 3, 4, 5]
 }
 
+[sub_resource type="Animation" id="Animation_slhut"]
+resource_name = "land1"
+length = 0.1
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("9_0l2ct")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-60, -128)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [10]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:vframes")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+
+[sub_resource type="Animation" id="Animation_0l2ct"]
+resource_name = "land2"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("9_0l2ct"), ExtResource("4_73pdd")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-80, -128), Vector2(-80, -128)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [10, 8]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:vframes")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 1]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [7, 8, 6, 7]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1k8gb"]
 _data = {
 &"RESET": SubResource("Animation_ry7sj"),
@@ -1016,6 +1150,8 @@ _data = {
 &"hurt1": SubResource("Animation_vrs6q"),
 &"hurt2": SubResource("Animation_rgtek"),
 &"idle": SubResource("Animation_uoenr"),
+&"land1": SubResource("Animation_slhut"),
+&"land2": SubResource("Animation_0l2ct"),
 &"wakeup": SubResource("Animation_yf5nf"),
 &"walk": SubResource("Animation_73pdd")
 }
@@ -1104,6 +1240,14 @@ enemy = NodePath("../..")
 script = ExtResource("12_2q0dk")
 enemy = NodePath("../..")
 
+[node name="Land1" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("21_70432")
+enemy = NodePath("../..")
+
+[node name="Land2" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("22_tv1wr")
+enemy = NodePath("../..")
+
 [node name="DamageEmitter" type="Area2D" parent="."]
 position = Vector2(0, -38)
 collision_layer = 0
@@ -1141,6 +1285,7 @@ debug_color = Color(0.573845, 0.554536, 0, 0.42)
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Attack1" method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Attack2" method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Attack3" method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Land2" method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="CollateralDamageEmitter" to="StateMachine/Fly" method="_on_collateral_damage_emitter_body_entered"]
 
 [editable path="DamageReceiver"]

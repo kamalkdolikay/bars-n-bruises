@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://ot7grpne33p"]
+[gd_scene load_steps=46 format=3 uid="uid://ot7grpne33p"]
 
 [ext_resource type="Script" uid="uid://bge70f7flbw1" path="res://src/features/characters/enemy/types/girl_enemy/girl_enemy.gd" id="1_1o6xl"]
 [ext_resource type="Texture2D" uid="uid://hk8hci84w33d" path="res://src/assets/sprites/characters/enemy/batting_girl/BattingGirl_Idle-Sheet.png" id="2_1o6xl"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cf713avxk2wx1" path="res://src/assets/sprites/characters/enemy/batting_girl/BattingGirl_attack03-Sheet.png" id="7_cq4ee"]
 [ext_resource type="PackedScene" uid="uid://ddpirwp3rfa4" path="res://src/features/characters/state_machine/state_machine.tscn" id="8_3xmia"]
 [ext_resource type="Script" uid="uid://fp08417gbwba" path="res://src/features/characters/enemy/states/hurt_1_state.gd" id="8_o77e2"]
+[ext_resource type="Texture2D" uid="uid://bqhtuymvl88lx" path="res://src/assets/sprites/characters/enemy/batting_girl/BattingGirl_Jump-Sheet.png" id="8_sdqtx"]
 [ext_resource type="Script" uid="uid://cy2tw2t5rtv3e" path="res://src/features/characters/enemy/states/hurt_2_state.gd" id="8_vnfr6"]
 [ext_resource type="Script" uid="uid://d3lnwej4foioj" path="res://src/features/characters/enemy/states/wakeup_state.gd" id="9_5xcxg"]
 [ext_resource type="Script" uid="uid://bml1ng4qx84qu" path="res://src/features/characters/enemy/states/fly_state.gd" id="11_8455d"]
@@ -20,6 +21,8 @@
 [ext_resource type="Script" uid="uid://d05yawi8wr51f" path="res://src/features/characters/enemy/states/prep_attack_state.gd" id="17_kyowj"]
 [ext_resource type="Script" uid="uid://dwqpnn7gvmtls" path="res://src/features/characters/enemy/states/attack_3_state.gd" id="18_fxsuw"]
 [ext_resource type="PackedScene" uid="uid://dmo31lwma845v" path="res://src/features/colliders/damage_receiver/damage_receiver.tscn" id="20_3o64p"]
+[ext_resource type="Script" uid="uid://p7tq43ghgt5m" path="res://src/features/characters/enemy/states/land_1_state.gd" id="20_ekpfd"]
+[ext_resource type="Script" uid="uid://cjfcby573vfrs" path="res://src/features/characters/enemy/states/land_2_state.gd" id="22_uqqt0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_040tv"]
 radius = 4.0
@@ -661,6 +664,59 @@ tracks/3/keys = {
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
 }
 
+[sub_resource type="Animation" id="Animation_sdqtx"]
+resource_name = "land2"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("8_sdqtx"), ExtResource("4_ja4ny")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [8, 8]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [6, 7, 6, 7]
+}
+
 [sub_resource type="Animation" id="Animation_kyowj"]
 resource_name = "prep_attack"
 length = 0.133
@@ -821,6 +877,60 @@ tracks/3/keys = {
 "values": [0, 1, 2, 3, 4, 5]
 }
 
+[sub_resource type="Animation" id="Animation_uqqt0"]
+resource_name = "land"
+length = 0.1
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("8_sdqtx")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4bqc8"]
 _data = {
 &"RESET": SubResource("Animation_upr5f"),
@@ -835,6 +945,8 @@ _data = {
 &"hurt1": SubResource("Animation_o77e2"),
 &"hurt2": SubResource("Animation_vnfr6"),
 &"idle": SubResource("Animation_1o6xl"),
+&"land1": SubResource("Animation_uqqt0"),
+&"land2": SubResource("Animation_sdqtx"),
 &"prep_attack": SubResource("Animation_kyowj"),
 &"wakeup": SubResource("Animation_5xcxg"),
 &"walk": SubResource("Animation_4bqc8")
@@ -927,6 +1039,14 @@ enemy = NodePath("../..")
 script = ExtResource("17_kyowj")
 enemy = NodePath("../..")
 
+[node name="Land1" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("20_ekpfd")
+enemy = NodePath("../..")
+
+[node name="Land2" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("22_uqqt0")
+enemy = NodePath("../..")
+
 [node name="DamageEmitter" type="Area2D" parent="."]
 position = Vector2(0, -38)
 collision_layer = 0
@@ -964,6 +1084,7 @@ debug_color = Color(0.573143, 0.55454, 0.0270795, 0.42)
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Attack1" method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Attack2" method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Attack3" method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Land2" method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="CollateralDamageEmitter" to="StateMachine/Fly" method="_on_collateral_damage_emitter_body_entered"]
 
 [editable path="DamageReceiver"]
