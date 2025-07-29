@@ -16,7 +16,7 @@ extends BaseCharacter
 @export var duration_prep_hit: int
 
 # State Definitions
-enum State { IDLE, WALK, HURT1, HURT2, WAKEUP, FLY, FALL, ATTACK1, ATTACK2, ATTACK3, LAND1, LAND2 }
+enum State { IDLE, WALK, HURT1, HURT2, WAKEUP, FLY, FALL, ATTACK1, ATTACK2, ATTACK3, LAND1, LAND2, WAIT }
 var states := {
 	State.IDLE: "Idle",
 	State.WALK: "Walk",
@@ -30,6 +30,7 @@ var states := {
 	State.ATTACK3: "Attack3",
 	State.LAND1: "Land1",
 	State.LAND2: "Land2",
+	State.WAIT: "Wait",
 }
 var attack_states := ["Attack1", "Attack2", "Attack3"]
 
@@ -40,6 +41,8 @@ var last_attack_time: int = 0
 var last_prep_time: int = 0
 var initial_collateral_position: Vector2
 var ground_position: float = 0.0
+var assigned_door_index: int = -1
+var door: Door
 
 # Initialization
 func _ready() -> void:
