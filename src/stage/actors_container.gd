@@ -19,6 +19,8 @@ const ENEMY_MAP := {
 	BaseCharacter.Type.BOSS: preload("res://src/features/characters/enemy/types/boss_enemy/boss_enemy.tscn"),
 }
 
+var doors: Array[Door] = []
+
 # Signals and Connections
 func _init() -> void:
 	EntityManager.spawn_collecible.connect(on_spawn_collectible)
@@ -49,6 +51,11 @@ func on_spawn_enemy(enemy_data: EnemyData) -> void:
 	
 	if enemy_data.height > 0:
 		enemy.state_machine.on_state_transition("Land1")
+	if enemy_data.door_index > -1:
+		enemy.door = doors[enemy_data.door_index]
+		enemy.state_machine.on_state_transition("Wait")
 	
 func on_orphan_actor(orphan: Node2D) -> void:
+	if orphan is Door:
+		doors.append(orphan)
 	orphan.reparent(self)
