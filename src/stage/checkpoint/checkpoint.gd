@@ -14,7 +14,7 @@ var is_checkpoint_active: bool = false
 func _ready() -> void:
 	player_detection_area.body_entered.connect(on_player_enter)
 	EntityManager.death_enemy.connect(on_enemy_death)
-	initialize_enemy_data()
+	#initialize_enemy_data()
 
 func _process(_delta: float) -> void:
 	if is_checkpoint_active and can_spawn_enemies():
@@ -22,8 +22,8 @@ func _process(_delta: float) -> void:
 
 # Private Methods
 func initialize_enemy_data() -> void:
-	for enemy: BaseCharacter in enemies.get_children():
-		enemy_data_queue.append(EnemyData.new(enemy.type, enemy.global_position))
+	for enemy: BaseEnemy in enemies.get_children():
+		enemy_data_queue.append(EnemyData.new(enemy.type, enemy.global_position, enemy.assigned_door_index))
 		enemy.queue_free()
 
 func can_spawn_enemies() -> bool:
