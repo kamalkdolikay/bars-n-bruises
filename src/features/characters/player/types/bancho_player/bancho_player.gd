@@ -82,9 +82,10 @@ func on_collectible_entered(collectible: Area2D) -> void:
 # Damage Logic
 func _on_receive_damage(damage_amount: int, direction: Vector2, _hit_type: DamageReceiver.HitType) -> void:
 	set_health(current_health - damage_amount)
-
+	
 	var state_to_emit
 	knockback_direction = direction.normalized()
+	EntityManager.spawn_spark.emit(position)
 	
 	if is_dead() or _hit_type == DamageReceiver.HitType.KNOCKDOWN:
 		state_to_emit = "Hurt2"
