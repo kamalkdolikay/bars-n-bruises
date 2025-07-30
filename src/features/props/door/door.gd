@@ -14,7 +14,7 @@ var state: State = State.CLOSED
 var time_start_opening := Time.get_ticks_msec()
 
 func _ready() -> void:
-	door_height = sprite.texture.get_height() + 30
+	door_height = sprite.texture.get_height() - 294
 	
 func _process(_delta: float) -> void:
 	if state == State.OPENING:
