@@ -19,6 +19,8 @@ const ENEMY_MAP := {
 	BaseCharacter.Type.BOSS: preload("res://src/features/characters/enemy/types/boss_enemy/boss_enemy.tscn"),
 }
 
+const SPARK_PREFAB := preload("res://src/features/props/spark.tscn")
+
 var doors: Array[Door] = []
 
 # Signals and Connections
@@ -26,6 +28,7 @@ func _init() -> void:
 	EntityManager.spawn_collecible.connect(on_spawn_collectible)
 	EntityManager.spawn_enemy.connect(on_spawn_enemy)
 	EntityManager.orphan_actor.connect(on_orphan_actor)
+	EntityManager.spawn_spark.connect(on_spawn_spark)
 
 # Public Methods
 # on_spawn_collectible: Handles the spawning of a collectible at the given global position.
@@ -54,7 +57,12 @@ func on_spawn_enemy(enemy_data: EnemyData) -> void:
 	if enemy_data.door_index > -1:
 		enemy.door = doors[enemy_data.door_index]
 		enemy.state_machine.on_state_transition("Wait")
-	
+
+func on_spawn_spark(spark_position: Vector2) -> void:
+	var spark_instance := SPARK_PREFAB.instantiate()
+	spark_instance.position = spark_position
+	add_child(spark_instance)
+
 func on_orphan_actor(orphan: Node2D) -> void:
 	if orphan is Door:
 		doors.append(orphan)
