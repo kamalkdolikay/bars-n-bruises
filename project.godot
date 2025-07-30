@@ -19,6 +19,7 @@ config/features=PackedStringArray("4.4", "GL Compatibility")
 EntityManager="*res://src/core/systems/entity_manager.gd"
 StageManager="*res://src/core/systems/stage_manager.gd"
 DamageManager="*res://src/core/systems/damage_manager.gd"
+ComboManager="*res://src/core/systems/combo_manager.gd"
 
 [display]
 
