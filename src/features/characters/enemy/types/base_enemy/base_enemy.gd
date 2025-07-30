@@ -43,6 +43,7 @@ var initial_collateral_position: Vector2
 var ground_position: float = 0.0
 var assigned_door_index: int = -1
 var door: Door
+var is_hit_once: bool = false
 
 # Initialization
 func _ready() -> void:
@@ -131,27 +132,6 @@ func can_attack() -> bool:
 
 func is_player_within_range() -> bool:
 	return (player_slot.global_position - global_position).length() < 1
-
-# Damage Logic
-func _on_receive_damage(damage_amount: int, _direction: Vector2, _hit_type: DamageReceiver.HitType) -> void:
-	super._on_receive_damage(damage_amount, _direction, _hit_type)
-	
-	# Free slot only on death
-	if is_dead() and is_instance_valid(player_slot):
-		player.free_slot(self)
-		player_slot = null
-	
-	# Emit HURT2 for death or KNOCKDOWN, otherwise HURT1
-	var state_to_emit
-	if is_dead() or _hit_type == DamageReceiver.HitType.KNOCKDOWN:
-		state_to_emit = states[State.HURT2]
-	elif _hit_type == DamageReceiver.HitType.POWER:
-		state_to_emit = states[State.HURT1]
-		hit_type = DamageReceiver.HitType.POWER
-	else:
-		state_to_emit = states[State.HURT1]
-		hit_type = DamageReceiver.HitType.NORMAL
-	state_machine.on_state_transition(state_to_emit)
 
 # Damage Emission
 func _on_emit_damage(target: Area2D) -> void:
