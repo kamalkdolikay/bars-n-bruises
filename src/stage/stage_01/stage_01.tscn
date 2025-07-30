@@ -105,7 +105,7 @@ collectible_type = 2
 [node name="Doors" type="Node2D" parent="."]
 
 [node name="Door" parent="Doors" node_paths=PackedStringArray("enemies") instance=ExtResource("7_m31rl")]
-position = Vector2(289, 172)
+position = Vector2(288, 172)
 enemies = [NodePath("../../Checkpoints/Checkpoint/Enemies/BossEnemy"), NodePath("../../Checkpoints/Checkpoint/Enemies/BossEnemy2"), NodePath("../../Checkpoints/Checkpoint/Enemies/GirlEnemy4")]
 
 [editable path="Checkpoints/Checkpoint"]
