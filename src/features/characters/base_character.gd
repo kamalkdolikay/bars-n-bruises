@@ -30,7 +30,7 @@ func _ready() -> void:
 	damage_receiver.damage_received.connect(_on_receive_damage)
 	
 	# Init state
-	current_health = max_health
+	#current_health = max_health
 	initial_collision_position = collision_shape.position
 	initial_damage_position = damage_shape.position
 
@@ -50,8 +50,8 @@ func _on_emit_damage(_receiver: Area2D) -> void:
 	pass
 
 # Damage Logic
-func _on_receive_damage(damage_amount: int, _direction: Vector2, _received_hit_type: int) -> void:
-	current_health = clamp(current_health - damage_amount, 0, max_health)
+func _on_receive_damage(_damage_amount: int, _direction: Vector2, _received_hit_type: int) -> void:
+	pass
 
 func is_dead() -> bool:
 	return current_health <= 0
