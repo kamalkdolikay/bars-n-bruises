@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2g5my27kumq6"]
+
+[ext_resource type="Script" uid="uid://be47iaywap6n" path="res://src/utils/flickering_texture/flickering_texture_rect.gd" id="1_swxdn"]
+
+[node name="FlickeringTextureRect" type="TextureRect"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_swxdn")
