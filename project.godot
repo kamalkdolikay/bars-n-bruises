@@ -26,6 +26,7 @@ DamageManager="*res://src/core/systems/damage_manager.gd"
 ComboManager="*res://src/core/systems/combo_manager.gd"
 MusicPlayer="*res://src/utils/music_player/music_player.tscn"
 SoundPlayer="*res://src/utils/sound_player/sound_player.tscn"
+OptionsManager="*res://src/core/systems/options_manager.gd"
 
 [display]
 
