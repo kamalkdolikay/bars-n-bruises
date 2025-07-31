@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://bt30n2e3pnibn"]
+[gd_scene load_steps=8 format=3 uid="uid://bt30n2e3pnibn"]
 
 [ext_resource type="Script" uid="uid://cp7bcaohqmpng" path="res://src/stage/world/world.gd" id="1_am5b7"]
 [ext_resource type="PackedScene" uid="uid://dvbe4nfamjdyu" path="res://src/ui/ui_container/ui.tscn" id="2_am5b7"]
 [ext_resource type="PackedScene" uid="uid://uivd1saa67ey" path="res://src/stage/stage_01/stage_01.tscn" id="2_wb50j"]
 [ext_resource type="Script" uid="uid://vqun3qa71msq" path="res://src/stage/actors_container.gd" id="3_2bkuq"]
 [ext_resource type="PackedScene" uid="uid://gp0muuff0noy" path="res://src/features/characters/player/types/bancho_player/bancho_player.tscn" id="4_c3dgs"]
+[ext_resource type="Script" uid="uid://dwg530c023glt" path="res://src/stage/camera/camera.gd" id="4_wb50j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qfnet"]
 size = Vector2(6, 349)
@@ -20,6 +21,9 @@ script = ExtResource("1_am5b7")
 position = Vector2(250, 175)
 position_smoothing_enabled = true
 position_smoothing_speed = 3.0
+script = ExtResource("4_wb50j")
+duration_shake = 50
+shake_intensity = 2
 
 [node name="InvisibleWalls" type="Node2D" parent="Camera"]
 position = Vector2(-250, -175)
