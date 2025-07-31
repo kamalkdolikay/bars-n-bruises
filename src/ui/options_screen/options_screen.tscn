@@ -53,20 +53,14 @@ layout_mode = 2
 
 [node name="MusicVolumeControl" parent="Background/MarginContainer/VBoxContainer" instance=ExtResource("3_xljn5")]
 layout_mode = 2
-color_default = Color(0.490196, 0.490196, 0.490196, 1)
-color_active = Color(0.815686, 0.815686, 0, 1)
 text = "MUSIC"
 
 [node name="SoundVolumeControl" parent="Background/MarginContainer/VBoxContainer" instance=ExtResource("3_xljn5")]
 layout_mode = 2
-color_default = Color(0.490196, 0.490196, 0.490196, 1)
-color_active = Color(0.815686, 0.815686, 0, 1)
 text = "SFX"
 
 [node name="ShakeToggle" parent="Background/MarginContainer/VBoxContainer" instance=ExtResource("4_kbm35")]
 layout_mode = 2
-color_default = Color(0.490196, 0.490196, 0.490196, 1)
-color_active = Color(0.815686, 0.815686, 0, 1)
 text = "SHAKE"
 
 [node name="Spacer2" type="Control" parent="Background/MarginContainer/VBoxContainer"]
@@ -75,6 +69,4 @@ layout_mode = 2
 [node name="ReturnButton" parent="Background/MarginContainer/VBoxContainer" instance=ExtResource("5_f5eo0")]
 layout_mode = 2
 alignment = 1
-color_default = Color(0.490196, 0.490196, 0.490196, 1)
-color_active = Color(0.815686, 0.815686, 0, 1)
 text = "RETURN"
