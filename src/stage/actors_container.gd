@@ -19,7 +19,7 @@ const ENEMY_MAP := {
 	BaseCharacter.Type.BOSS: preload("res://src/features/characters/enemy/types/boss_enemy/boss_enemy.tscn"),
 }
 
-const SPARK_PREFAB := preload("res://src/features/props/spark.tscn")
+const SPARK_PREFAB := preload("res://src/features/particles/spark.tscn")
 
 var doors: Array[Door] = []
 
