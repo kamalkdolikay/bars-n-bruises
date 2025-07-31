@@ -27,6 +27,7 @@ func _process(delta: float) -> void:
 	handle_air_time(delta)
 
 func on_receive_damage(_damage_amount: int, direction: Vector2, _hit_type: DamageReceiver.HitType) -> void:
+	SoundPlayer.play(SoundManager.Sound.HIT1, true)
 	match state:
 		State.IDLE:
 			sprite.flip_h = direction.x < 0
