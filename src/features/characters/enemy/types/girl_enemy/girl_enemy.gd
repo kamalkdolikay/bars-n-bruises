@@ -8,6 +8,7 @@ func _ready() -> void:
 # Damage Logic
 func _on_receive_damage(damage_amount: int, _direction: Vector2, _hit_type: DamageReceiver.HitType) -> void:
 	set_health(current_health - damage_amount, true)
+	SoundPlayer.play(SoundManager.Sound.HIT2, true)
 	ComboManager.register_hit.emit()
 	# Free slot only on death
 	if is_dead() and is_instance_valid(player_slot):
@@ -18,8 +19,10 @@ func _on_receive_damage(damage_amount: int, _direction: Vector2, _hit_type: Dama
 	# Emit HURT2 for death or KNOCKDOWN, otherwise HURT1
 	var state_to_emit
 	if is_dead() or _hit_type == DamageReceiver.HitType.KNOCKDOWN:
+		DamageManager.heavy_blow_received.emit()
 		state_to_emit = states[State.HURT2]
 	elif _hit_type == DamageReceiver.HitType.POWER:
+		DamageManager.heavy_blow_received.emit()
 		state_to_emit = states[State.HURT1]
 		hit_type = DamageReceiver.HitType.POWER
 	else:

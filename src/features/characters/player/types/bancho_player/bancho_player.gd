@@ -77,17 +77,19 @@ func get_knockback_direction() -> Vector2:
 # Collectibles
 func on_collectible_entered(collectible: Area2D) -> void:
 	set_health(max_health)
+	SoundPlayer.play(SoundManager.Sound.FOOD)
 	collectible.queue_free()
 
 # Damage Logic
 func _on_receive_damage(damage_amount: int, direction: Vector2, _hit_type: DamageReceiver.HitType) -> void:
 	set_health(current_health - damage_amount)
-	
+	SoundPlayer.play(SoundManager.Sound.HIT2, true)
 	var state_to_emit
 	knockback_direction = direction.normalized()
 	EntityManager.spawn_spark.emit(position)
 	
 	if is_dead() or _hit_type == DamageReceiver.HitType.KNOCKDOWN:
+		DamageManager.heavy_blow_received.emit()
 		state_to_emit = "Hurt2"
 	elif _hit_type == DamageReceiver.HitType.PUNCH:
 		state_to_emit = "Hurt1"
@@ -95,10 +97,12 @@ func _on_receive_damage(damage_amount: int, direction: Vector2, _hit_type: Damag
 	else:
 		state_to_emit = "Hurt1"
 		hit_type = DamageReceiver.HitType.KICK
+		DamageManager.heavy_blow_received.emit()
 	state_machine.on_state_transition(state_to_emit)
 
 # Damage Emission
 func _on_emit_damage(receiver: Area2D) -> void:
+	SoundPlayer.play(SoundManager.Sound.SWOOSH)
 	var attack_name := state_machine.current_state.name
 	var attack_props = _get_attack_properties(attack_name)
 	var _hit_type = attack_props[0]
