@@ -1,0 +1,80 @@
+[gd_scene load_steps=6 format=3 uid="uid://rajl881favoe"]
+
+[ext_resource type="Script" uid="uid://cndybmw7ijrt4" path="res://src/ui/options_screen/options_screen.gd" id="1_e72yr"]
+[ext_resource type="Theme" uid="uid://cr2uuvsafpjxb" path="res://src/ui/gui_theme.tres" id="2_7owhe"]
+[ext_resource type="PackedScene" uid="uid://41w2uakfhs2t" path="res://src/ui/controls/range_picker/range_picker.tscn" id="3_xljn5"]
+[ext_resource type="PackedScene" uid="uid://cr866avx3l8sy" path="res://src/ui/controls/toggle_picker/toggle_picker.tscn" id="4_kbm35"]
+[ext_resource type="PackedScene" uid="uid://bs73ocxwoo70j" path="res://src/ui/controls/label_picker/label_picker.tscn" id="5_f5eo0"]
+
+[node name="OptionsScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_e72yr")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0784314, 0.0784314, 0.0784314, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 60
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 22
+
+[node name="OptionsLabel" type="Label" parent="Background/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_7owhe")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "OPTIONS"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="Background/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MusicVolumeControl" parent="Background/MarginContainer/VBoxContainer" instance=ExtResource("3_xljn5")]
+layout_mode = 2
+color_default = Color(0.490196, 0.490196, 0.490196, 1)
+color_active = Color(0.815686, 0.815686, 0, 1)
+text = "MUSIC"
+
+[node name="SoundVolumeControl" parent="Background/MarginContainer/VBoxContainer" instance=ExtResource("3_xljn5")]
+layout_mode = 2
+color_default = Color(0.490196, 0.490196, 0.490196, 1)
+color_active = Color(0.815686, 0.815686, 0, 1)
+text = "SFX"
+
+[node name="ShakeToggle" parent="Background/MarginContainer/VBoxContainer" instance=ExtResource("4_kbm35")]
+layout_mode = 2
+color_default = Color(0.490196, 0.490196, 0.490196, 1)
+color_active = Color(0.815686, 0.815686, 0, 1)
+text = "SHAKE"
+
+[node name="Spacer2" type="Control" parent="Background/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ReturnButton" parent="Background/MarginContainer/VBoxContainer" instance=ExtResource("5_f5eo0")]
+layout_mode = 2
+alignment = 1
+color_default = Color(0.490196, 0.490196, 0.490196, 1)
+color_active = Color(0.815686, 0.815686, 0, 1)
+text = "RETURN"
