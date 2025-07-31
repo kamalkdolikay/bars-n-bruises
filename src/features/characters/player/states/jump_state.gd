@@ -20,6 +20,7 @@ var height_speed: float = 0.0
 var initial_y: float = 0.0
 
 func enter() -> void:
+	SoundPlayer.play(SoundManager.Sound.SWOOSH)
 	player.play_animation(ANIMATIONS[LocalState.TAKEOFF])
 	initial_y = player.position.y
 
