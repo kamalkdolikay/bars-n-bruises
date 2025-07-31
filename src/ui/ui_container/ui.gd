@@ -1,6 +1,8 @@
 class_name UI
 extends CanvasLayer
 
+const OPTIONS_SCREEN_PREFAB := preload("res://src/ui/options_screen/options_screen.tscn")
+
 @onready var player_health_bar: HealthBar = $UIContainer/PlayerHealthBar
 @onready var enemy_health_bar: HealthBar = $UIContainer/EnemyHealthBar
 @onready var player_avatar: Sprite2D = $UIContainer/PlayerAvatar
@@ -19,8 +21,8 @@ var initial_girl_enemy_region_rect: Rect2
 var initial_boss_enemy_position: Vector2
 var initial_boss_enemy_scale: Vector2
 var initial_boss_enemy_region_rect: Rect2
-
 var time_since_healthbar_visible := Time.get_ticks_msec()
+var option_screen: OptionsScreen = null
 
 const avatar_map: Dictionary = {
 	BaseCharacter.Type.GIRL: preload("res://src/assets/sprites/characters/enemy/batting_girl/BattingGirl_Idle-Sheet.png"),
@@ -42,6 +44,7 @@ func _process(_delta: float) -> void:
 		enemy_avatar.visible = false
 		enemy_avatar_2.visible = false
 		enemy_health_bar.visible = false
+	handle_input()
 
 func on_character_health_change(type: BaseCharacter.Type, current_health: int, max_health: int) -> void:
 	if type == BaseCharacter.Type.PLAYER:
@@ -62,3 +65,17 @@ func on_combo_reset(points: int) -> void:
 
 func on_checkpoint_complete() -> void:
 	go_indicator.start_flickering()
+
+func handle_input() -> void:
+	if Input.is_action_just_pressed("ui_cancel"):
+		if option_screen == null:
+			option_screen = OPTIONS_SCREEN_PREFAB.instantiate()
+			option_screen.exit.connect(unpause)
+			add_child(option_screen)
+			get_tree().paused = true
+		else:
+			unpause()
+
+func unpause() -> void:
+	option_screen.queue_free()
+	get_tree().paused = false
