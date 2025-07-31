@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cb8vvr46tffn3"]
 
 [ext_resource type="Theme" uid="uid://cr2uuvsafpjxb" path="res://src/ui/gui_theme.tres" id="1_37b7g"]
-[ext_resource type="Script" uid="uid://dy8kc3ruqbveq" path="res://src/ui/score_indicator.gd" id="2_dg24i"]
+[ext_resource type="Script" uid="uid://dy8kc3ruqbveq" path="res://src/ui/score_indicator/score_indicator.gd" id="2_dg24i"]
 
 [node name="ScoreIndicator" type="Label"]
 offset_right = 40.0
