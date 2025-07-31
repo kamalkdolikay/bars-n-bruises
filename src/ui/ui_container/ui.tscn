@@ -1,12 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://dvbe4nfamjdyu"]
+[gd_scene load_steps=10 format=3 uid="uid://dvbe4nfamjdyu"]
 
 [ext_resource type="Script" uid="uid://ceadrbxj5ca7y" path="res://src/ui/ui_container/ui.gd" id="1_8wxmc"]
 [ext_resource type="PackedScene" uid="uid://dvbc6kk5nm7p2" path="res://src/ui/health_bar/health_bar.tscn" id="2_jlntk"]
 [ext_resource type="Texture2D" uid="uid://chi2u85rf4ru3" path="res://src/assets/sprites/characters/player/Bancho_Idle.png" id="3_qemve"]
 [ext_resource type="Texture2D" uid="uid://hk8hci84w33d" path="res://src/assets/sprites/characters/enemy/batting_girl/BattingGirl_Idle-Sheet.png" id="4_8wxmc"]
 [ext_resource type="Texture2D" uid="uid://df3t11ce2tpnk" path="res://src/assets/sprites/characters/enemy/brute_arms/BruteArm_Idle.png" id="4_sjdex"]
-[ext_resource type="PackedScene" uid="uid://dqof4n8ia1le4" path="res://src/ui/combo_indicator.tscn" id="6_jnjid"]
-[ext_resource type="PackedScene" uid="uid://cb8vvr46tffn3" path="res://src/ui/score_indicator.tscn" id="7_2qgjt"]
+[ext_resource type="PackedScene" uid="uid://dqof4n8ia1le4" path="res://src/ui/combo_indicator/combo_indicator.tscn" id="6_jnjid"]
+[ext_resource type="PackedScene" uid="uid://cb8vvr46tffn3" path="res://src/ui/score_indicator/score_indicator.tscn" id="7_2qgjt"]
+[ext_resource type="PackedScene" uid="uid://b2g5my27kumq6" path="res://src/utils/flickering_texture/flickering_texture_rect.tscn" id="8_yaefl"]
+[ext_resource type="Texture2D" uid="uid://crx4ht1nkc2gv" path="res://src/assets/sprites/ui/go-go-go.png" id="9_ucbnj"]
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_8wxmc")
@@ -96,5 +98,19 @@ offset_left = 43.0
 offset_top = 23.0
 offset_right = 83.0
 offset_bottom = 46.0
+
+[node name="GoIndicator" parent="UIContainer" instance=ExtResource("8_yaefl")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -41.0
+offset_top = 68.0
+offset_right = -1.0
+offset_bottom = 108.0
+grow_horizontal = 0
+texture = ExtResource("9_ucbnj")
+duration_flicker = 200
+total_flickers = 3
 
 [editable path="UIContainer/EnemyHealthBar"]
