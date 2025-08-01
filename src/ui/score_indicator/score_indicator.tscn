@@ -11,3 +11,4 @@ theme_override_font_sizes/font_size = 20
 text = "100"
 script = ExtResource("2_dg24i")
 duration_score_update = 300.0
+points_per_life = 100
