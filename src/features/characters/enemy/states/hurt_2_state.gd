@@ -11,6 +11,8 @@ var wakeup_started: bool = false
 
 func enter() -> void:
 	enemy.play_animation((enemy.states[enemy.State.HURT2]).to_lower())
+	enemy.collision_shape.set_deferred("disabled", true)
+	enemy.damage_shape.set_deferred("disabled", true)
 
 func update(_delta: float) -> void:
 	if not is_knocked_out:
@@ -43,5 +45,7 @@ func play_fade_out_and_destroy() -> void:
 
 func exit() -> void:
 	enemy.stop_animation()
+	enemy.collision_shape.set_deferred("disabled", false)
+	enemy.damage_shape.set_deferred("disabled", false)
 	is_knocked_out = false
 	wakeup_started = false

@@ -17,6 +17,8 @@ var wakeup_started := false
 
 func enter() -> void:
 	player.play_animation(hurt_state[LocalState.KNOCKEDOUT])
+	player.collision_shape.set_deferred("disabled", true)
+	player.damage_shape.set_deferred("disabled", true)
 
 func update(_delta: float) -> void:
 	if not is_knocked_out:
@@ -31,7 +33,8 @@ func start_wakeup_delay() -> void:
 	await get_tree().create_timer(WAKEUP_DELAY).timeout
 	if is_knocked_out and wakeup_started:
 		if player.is_dead():
-			play_fade_out_and_destroy()
+			pass
+			#play_fade_out_and_destroy()
 		else:
 			player.play_animation(hurt_state[LocalState.WAKEUP])
 
@@ -48,5 +51,7 @@ func play_fade_out_and_destroy() -> void:
 
 func exit() -> void:
 	player.stop_animation()
+	player.collision_shape.set_deferred("disabled", false)
+	player.damage_shape.set_deferred("disabled", false)
 	is_knocked_out = false
 	wakeup_started = false
