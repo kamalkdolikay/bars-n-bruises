@@ -29,6 +29,7 @@ func _init() -> void:
 	EntityManager.spawn_enemy.connect(on_spawn_enemy)
 	EntityManager.orphan_actor.connect(on_orphan_actor)
 	EntityManager.spawn_spark.connect(on_spawn_spark)
+	DamageManager.player_revive.connect(on_player_revive)
 
 # Public Methods
 # on_spawn_collectible: Handles the spawning of a collectible at the given global position.
@@ -67,3 +68,10 @@ func on_orphan_actor(orphan: Node2D) -> void:
 	if orphan is Door:
 		doors.append(orphan)
 	orphan.reparent(self)
+
+func on_player_revive() -> void:
+	for child in get_children():
+		if child is BaseCharacter:
+			var character: BaseCharacter = child as BaseCharacter
+			if character.type != BaseCharacter.Type.PLAYER:
+				character._on_receive_damage(0, Vector2.ZERO, DamageReceiver.HitType.KNOCKDOWN)
