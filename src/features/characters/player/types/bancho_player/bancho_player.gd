@@ -41,6 +41,7 @@ func _ready() -> void:
 	super._ready()
 	# Connect signals
 	collectible_sensor.area_entered.connect(on_collectible_entered)
+	DamageManager.player_revive.connect(on_player_revive)
 	
 	# Init state
 	initial_collectible_position = collectible_collision_shape.position
@@ -153,3 +154,8 @@ func free_slot(enemy: BaseEnemy) -> void:
 func set_health(health: int) -> void:
 	current_health = clamp(health, 0, max_health)
 	DamageManager.health_change.emit(Type.PLAYER, current_health, max_health)
+
+func on_player_revive() -> void:
+	current_health = max_health
+	state_machine.on_state_transition("Idle")
+	
