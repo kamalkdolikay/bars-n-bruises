@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://cvhnacd20m72s"]
+
+[ext_resource type="PackedScene" uid="uid://uivd1saa67ey" path="res://src/stage/base_stage/stage.tscn" id="1_cry86"]
+[ext_resource type="PackedScene" uid="uid://bn1f6k4h48xra" path="res://src/stage/stage_01/tilemap/stage_1_map.tscn" id="2_5lb5u"]
+
+[node name="Stage" instance=ExtResource("1_cry86")]
+
+[node name="Stage_1_Map" parent="Backgrounds" index="0" instance=ExtResource("2_5lb5u")]
