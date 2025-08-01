@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://b4md1vpu1s0y1"]
 
 [ext_resource type="PackedScene" uid="uid://bbmlwmirjpy7a" path="res://src/features/props/collectible.tscn" id="1_8peab"]
-[ext_resource type="Texture2D" uid="uid://uuj060vij201" path="res://src/assets/sprites/props/chicken.png" id="2_jqika"]
+[ext_resource type="Texture2D" uid="uid://uuj060vij201" path="res://src/assets/sprites/props/health/chicken.png" id="2_jqika"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jqika"]
 size = Vector2(25, 24)
