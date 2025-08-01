@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://uivd1saa67ey"]
+
+[ext_resource type="Script" uid="uid://dg3cf6pvuqcia" path="res://src/stage/base_stage/stage.gd" id="1_5we3g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_60fcs"]
+size = Vector2(2570.5, 111)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xvkir"]
+size = Vector2(2793.5, 111)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fpces"]
+size = Vector2(109, 42)
+
+[node name="Stage" type="Node2D"]
+script = ExtResource("1_5we3g")
+music = 2
+
+[node name="Backgrounds" type="Node2D" parent="."]
+
+[node name="WorldColliders" type="Node2D" parent="."]
+
+[node name="TopStaticBody" type="StaticBody2D" parent="WorldColliders"]
+position = Vector2(0, 107)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldColliders/TopStaticBody"]
+position = Vector2(1254.75, 45.5)
+shape = SubResource("RectangleShape2D_60fcs")
+
+[node name="BottomStaticBody" type="StaticBody2D" parent="WorldColliders"]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldColliders/BottomStaticBody"]
+position = Vector2(1364.25, 405)
+shape = SubResource("RectangleShape2D_xvkir")
+
+[node name="Checkpoints" type="Node2D" parent="."]
+
+[node name="Containers" type="Node2D" parent="."]
+
+[node name="Doors" type="Node2D" parent="."]
+
+[node name="NextStage" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NextStage"]
+position = Vector2(2601, 151)
+shape = SubResource("RectangleShape2D_fpces")
+
+[node name="PlayerSpawnLocation" type="Node2D" parent="."]
+position = Vector2(104, 277)
