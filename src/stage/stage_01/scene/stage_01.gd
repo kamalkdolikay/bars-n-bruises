@@ -4,10 +4,12 @@ extends Node2D
 @onready var containers: Node2D = $Containers
 @onready var doors: Node2D = $Doors
 @onready var checkpoints: Node2D = $Checkpoints
+@onready var next_stage: Area2D = $NextStage
 
 @export var music: MusicManager.Music
 
 func _ready() -> void:
+	next_stage.body_entered.connect(on_player_enter)
 	for container: Node2D in containers.get_children():
 		EntityManager.orphan_actor.emit(container)
 		
@@ -23,3 +25,6 @@ func _ready() -> void:
 		checkpoint.initialize_enemy_data()
 
 	MusicPlayer.play(music)
+
+func on_player_enter(player) -> void:
+	print(player)
