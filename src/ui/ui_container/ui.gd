@@ -1,7 +1,9 @@
 class_name UI
 extends CanvasLayer
 
+const DEATH_SCREEN_PREFAB := preload("res://src/ui/death_screen/death_screen.tscn")
 const OPTIONS_SCREEN_PREFAB := preload("res://src/ui/options_screen/options_screen.tscn")
+const GAME_OVER_PREFAB := preload("res://src/ui/game_over_screen/game_over_screen.tscn")
 
 @onready var player_health_bar: HealthBar = $UIContainer/PlayerHealthBar
 @onready var enemy_health_bar: HealthBar = $UIContainer/EnemyHealthBar
@@ -15,14 +17,10 @@ const OPTIONS_SCREEN_PREFAB := preload("res://src/ui/options_screen/options_scre
 
 @export var duration_healthbar_visible: int
 
-var initial_girl_enemy_position: Vector2
-var initial_girl_enemy_scale: Vector2
-var initial_girl_enemy_region_rect: Rect2
-var initial_boss_enemy_position: Vector2
-var initial_boss_enemy_scale: Vector2
-var initial_boss_enemy_region_rect: Rect2
 var time_since_healthbar_visible := Time.get_ticks_msec()
 var option_screen: OptionsScreen = null
+var death_screen: DeathScreen = null
+var game_over_screen: GameOverScreen = null
 
 const avatar_map: Dictionary = {
 	BaseCharacter.Type.GIRL: preload("res://src/assets/sprites/characters/enemy/batting_girl/BattingGirl_Idle-Sheet.png"),
@@ -49,6 +47,10 @@ func _process(_delta: float) -> void:
 func on_character_health_change(type: BaseCharacter.Type, current_health: int, max_health: int) -> void:
 	if type == BaseCharacter.Type.PLAYER:
 		player_health_bar.refresh(current_health, max_health)
+		if current_health == 0 and death_screen == null:
+			death_screen = DEATH_SCREEN_PREFAB.instantiate()
+			death_screen.game_over.connect(on_game_over)
+			add_child(death_screen)
 	else:
 		time_since_healthbar_visible = Time.get_ticks_msec()
 		if type == BaseCharacter.Type.BOSS:
@@ -79,3 +81,9 @@ func handle_input() -> void:
 func unpause() -> void:
 	option_screen.queue_free()
 	get_tree().paused = false
+
+func on_game_over() -> void:
+	if game_over_screen == null:
+		game_over_screen = GAME_OVER_PREFAB.instantiate()
+		game_over_screen.set_score(score_indicator.real_score)
+		add_child(game_over_screen)
