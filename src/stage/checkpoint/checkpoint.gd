@@ -45,5 +45,5 @@ func on_player_enter(_player: PlayerCharacter) -> void:
 func on_enemy_death(_enemy: BaseEnemy) -> void:
 	active_enemy_count = max(0, active_enemy_count - 1)
 	if active_enemy_count == 0 and enemy_data_queue.is_empty():
-		StageManager.checkpoint_complete.emit()
+		StageManager.checkpoint_complete.emit(self)
 		queue_free()

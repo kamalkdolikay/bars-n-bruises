@@ -65,7 +65,7 @@ func on_character_health_change(type: BaseCharacter.Type, current_health: int, m
 func on_combo_reset(points: int) -> void:
 	score_indicator.add_combo(points)
 
-func on_checkpoint_complete() -> void:
+func on_checkpoint_complete(_checkpoint: Checkpoint) -> void:
 	go_indicator.start_flickering()
 
 func handle_input() -> void:
