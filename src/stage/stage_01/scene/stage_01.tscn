@@ -1,9 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://uivd1saa67ey"]
+[gd_scene load_steps=14 format=3 uid="uid://bet7u4ns0b10"]
 
-[ext_resource type="Script" uid="uid://dg3cf6pvuqcia" path="res://src/stage/stage_01/scene/stage_01.gd" id="1_jya2g"]
+[ext_resource type="PackedScene" uid="uid://uivd1saa67ey" path="res://src/stage/base_stage/stage.tscn" id="1_q1u63"]
 [ext_resource type="PackedScene" uid="uid://chedjffvt7emj" path="res://src/stage/checkpoint/checkpoint.tscn" id="2_4tmra"]
 [ext_resource type="PackedScene" uid="uid://ot7grpne33p" path="res://src/features/characters/enemy/types/girl_enemy/girl_enemy.tscn" id="3_2o1u2"]
-[ext_resource type="PackedScene" uid="uid://bn1f6k4h48xra" path="res://src/stage/stage_01/map/stage_1_map.tscn" id="4_5h3qm"]
+[ext_resource type="PackedScene" uid="uid://bn1f6k4h48xra" path="res://src/stage/stage_01/tilemap/stage_1_map.tscn" id="4_5h3qm"]
 [ext_resource type="PackedScene" uid="uid://bg4nj5mmcgo4h" path="res://src/features/characters/enemy/types/boss_enemy/boss_enemy.tscn" id="4_axqnj"]
 [ext_resource type="PackedScene" uid="uid://dwvtud1w4ogdb" path="res://src/features/props/barrel/barrel.tscn" id="5_ok67v"]
 [ext_resource type="PackedScene" uid="uid://bvntkbj776dxt" path="res://src/features/props/door/door.tscn" id="7_m31rl"]
@@ -12,52 +12,30 @@
 [ext_resource type="PackedScene" uid="uid://d0lgjax4dx3lq" path="res://src/features/props/street_light/street_light.tscn" id="11_xvkir"]
 [ext_resource type="PackedScene" uid="uid://xbjuy2h2pvnc" path="res://src/features/props/tree/tree.tscn" id="12_kadwm"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_60fcs"]
-size = Vector2(2570.5, 111)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xvkir"]
-size = Vector2(2793.5, 111)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kadwm"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q1u63"]
 size = Vector2(77.5, 349)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fpces"]
-size = Vector2(64, 70)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vv4al"]
+size = Vector2(59, 124)
 
-[node name="Stage-01" type="Node2D"]
-script = ExtResource("1_jya2g")
-music = 2
+[node name="Stage" instance=ExtResource("1_q1u63")]
 
-[node name="Backgrounds" type="Node2D" parent="."]
+[node name="Stage_1_Map" parent="Backgrounds" index="0" instance=ExtResource("4_5h3qm")]
 
-[node name="Stage_1_Map" parent="Backgrounds" instance=ExtResource("4_5h3qm")]
-
-[node name="WorldColliders" type="Node2D" parent="."]
-
-[node name="StaticBody2D" type="StaticBody2D" parent="WorldColliders"]
-position = Vector2(0, 107)
+[node name="RightStaticBody" type="StaticBody2D" parent="WorldColliders" index="2"]
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldColliders/StaticBody2D"]
-position = Vector2(1254.75, 45.5)
-shape = SubResource("RectangleShape2D_60fcs")
-
-[node name="BottomStaticBody" type="StaticBody2D" parent="WorldColliders"]
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldColliders/BottomStaticBody"]
-position = Vector2(1364.25, 405)
-shape = SubResource("RectangleShape2D_xvkir")
-
-[node name="RightStaticBody" type="StaticBody2D" parent="WorldColliders"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldColliders/RightStaticBody"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldColliders/RightStaticBody" index="0"]
 position = Vector2(2760.25, 174.5)
-shape = SubResource("RectangleShape2D_kadwm")
+shape = SubResource("RectangleShape2D_q1u63")
 
-[node name="Checkpoints" type="Node2D" parent="."]
+[node name="DoorRightStaticBody" type="StaticBody2D" parent="WorldColliders" index="3"]
 
-[node name="Checkpoint" parent="Checkpoints" instance=ExtResource("2_4tmra")]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldColliders/DoorRightStaticBody" index="0"]
+position = Vector2(2692.5, 145)
+shape = SubResource("RectangleShape2D_vv4al")
+
+[node name="Checkpoint" parent="Checkpoints" index="0" instance=ExtResource("2_4tmra")]
 position = Vector2(347, 0)
 max_simulataneous_enemies = 2
 
@@ -73,7 +51,7 @@ position = Vector2(546, 238)
 [node name="GirlEnemy4" parent="Checkpoints/Checkpoint/Enemies" index="3" instance=ExtResource("3_2o1u2")]
 position = Vector2(543, 326)
 
-[node name="Checkpoint2" parent="Checkpoints" instance=ExtResource("2_4tmra")]
+[node name="Checkpoint2" parent="Checkpoints" index="1" instance=ExtResource("2_4tmra")]
 position = Vector2(1072, 0)
 max_simulataneous_enemies = 3
 
@@ -95,7 +73,7 @@ position = Vector2(393, 193)
 [node name="CollisionShape2D" parent="Checkpoints/Checkpoint2/CheckpointPlayArea" index="0"]
 position = Vector2(242, 175)
 
-[node name="Checkpoint3" parent="Checkpoints" instance=ExtResource("2_4tmra")]
+[node name="Checkpoint3" parent="Checkpoints" index="2" instance=ExtResource("2_4tmra")]
 position = Vector2(1780, 0)
 max_simulataneous_enemies = 4
 
@@ -123,41 +101,35 @@ position = Vector2(404, -3)
 [node name="BossEnemy4" parent="Checkpoints/Checkpoint3/Enemies" index="7" instance=ExtResource("4_axqnj")]
 position = Vector2(381, 441)
 
-[node name="Containers" type="Node2D" parent="."]
-
-[node name="Barrel" parent="Containers" instance=ExtResource("5_ok67v")]
+[node name="Barrel" parent="Containers" index="0" instance=ExtResource("5_ok67v")]
 position = Vector2(938, 256)
 collectible_type = 1
 
-[node name="Barrel2" parent="Containers" instance=ExtResource("5_ok67v")]
+[node name="Barrel2" parent="Containers" index="1" instance=ExtResource("5_ok67v")]
 position = Vector2(1645, 246)
 collectible_type = 2
 
-[node name="Car" parent="Containers" instance=ExtResource("9_6fpta")]
+[node name="Car" parent="Containers" index="2" instance=ExtResource("9_6fpta")]
 position = Vector2(335, 351)
 
-[node name="Hydrant" parent="Containers" instance=ExtResource("10_fpces")]
+[node name="Hydrant" parent="Containers" index="3" instance=ExtResource("10_fpces")]
 position = Vector2(278, 246)
 
-[node name="StreetLight" parent="Containers" instance=ExtResource("11_xvkir")]
+[node name="StreetLight" parent="Containers" index="4" instance=ExtResource("11_xvkir")]
 position = Vector2(474, 350)
 
-[node name="Tree" parent="Containers" instance=ExtResource("12_kadwm")]
+[node name="Tree" parent="Containers" index="5" instance=ExtResource("12_kadwm")]
 position = Vector2(540, 352)
 
-[node name="Doors" type="Node2D" parent="."]
-
-[node name="Door" parent="Doors" node_paths=PackedStringArray("enemies") instance=ExtResource("7_m31rl")]
+[node name="Door" parent="Doors" index="0" node_paths=PackedStringArray("enemies") instance=ExtResource("7_m31rl")]
 position = Vector2(1464, 174)
 enemies = [NodePath("../../Checkpoints/Checkpoint2/Enemies/BossEnemy"), NodePath("../../Checkpoints/Checkpoint2/Enemies/BossEnemy2"), NodePath("../../Checkpoints/Checkpoint2/Enemies/BossEnemy5")]
 
-[node name="NextStage" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 2
+[node name="CollisionShape2D" parent="NextStage" index="0"]
+position = Vector2(2601, 53)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="NextStage"]
-position = Vector2(2601, 151)
-shape = SubResource("RectangleShape2D_fpces")
+[node name="PlayerSpawnLocation" parent="." index="6"]
+position = Vector2(1935, 286)
 
 [editable path="Checkpoints/Checkpoint"]
 [editable path="Checkpoints/Checkpoint2"]
