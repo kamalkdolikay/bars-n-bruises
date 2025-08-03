@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cr866avx3l8sy"]
 
 [ext_resource type="PackedScene" uid="uid://bxarq28ybqer0" path="res://src/ui/controls/activable_control.tscn" id="1_xmm8a"]
-[ext_resource type="Theme" uid="uid://cr2uuvsafpjxb" path="res://src/ui/gui_theme.tres" id="2_1rvoo"]
+[ext_resource type="Theme" uid="uid://cr2uuvsafpjxb" path="res://src/ui/theme/gui_theme.tres" id="2_1rvoo"]
 [ext_resource type="Script" uid="uid://mfjfh5ryji4u" path="res://src/ui/controls/toggle_picker/toggle_picker.gd" id="2_en8rv"]
 
 [node name="TogglePicker" instance=ExtResource("1_xmm8a")]

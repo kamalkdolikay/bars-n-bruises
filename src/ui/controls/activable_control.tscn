@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bxarq28ybqer0"]
 
-[ext_resource type="Theme" uid="uid://cr2uuvsafpjxb" path="res://src/ui/gui_theme.tres" id="1_hpvuq"]
+[ext_resource type="Theme" uid="uid://cr2uuvsafpjxb" path="res://src/ui/theme/gui_theme.tres" id="1_hpvuq"]
 [ext_resource type="Script" uid="uid://cspcxlt1d2bts" path="res://src/ui/controls/activable_control.gd" id="1_k772m"]
 
 [node name="ActivableControl" type="HBoxContainer"]
