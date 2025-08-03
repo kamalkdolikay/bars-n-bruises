@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://d0lgjax4dx3lq"]
 
-[ext_resource type="Texture2D" uid="uid://cqqscsg6ugb6j" path="res://src/assets/sprites/props/fore.png" id="1_1gtoh"]
+[ext_resource type="Texture2D" uid="uid://cqqscsg6ugb6j" path="res://src/assets/sprites/props/street/fore.png" id="1_1gtoh"]
 
 [node name="StreetLight" type="StaticBody2D"]
 

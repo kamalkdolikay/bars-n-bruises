@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://qu4yw70p72ru"]
 
-[ext_resource type="Texture2D" uid="uid://baqd3im6twpee" path="res://src/assets/sprites/props/hydrant.png" id="1_gnqwl"]
+[ext_resource type="Texture2D" uid="uid://baqd3im6twpee" path="res://src/assets/sprites/props/hydrant/hydrant.png" id="1_gnqwl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gnqwl"]
 radius = 5.0

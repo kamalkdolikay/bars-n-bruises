@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b2ettcv3ucvqc"]
 
-[ext_resource type="Texture2D" uid="uid://drv2vh1vkkf3t" path="res://src/assets/sprites/props/car.png" id="1_7822p"]
+[ext_resource type="Texture2D" uid="uid://drv2vh1vkkf3t" path="res://src/assets/sprites/props/car/car.png" id="1_7822p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7822p"]
 size = Vector2(125, 11.5)

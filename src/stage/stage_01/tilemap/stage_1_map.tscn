@@ -1,8 +1,8 @@
 [gd_scene load_steps=18 format=4 uid="uid://bn1f6k4h48xra"]
 
 [ext_resource type="TileSet" uid="uid://d1std508tu322" path="res://src/stage/stage_01/tilemap/stage_1_tileset.tres" id="1_ldnr7"]
-[ext_resource type="Texture2D" uid="uid://cgsjhn6sx0lxu" path="res://src/assets/sprites/props/banners/banner_hor/banner-hor1.png" id="2_ua2lp"]
-[ext_resource type="Texture2D" uid="uid://bnncewkxmckrt" path="res://src/assets/sprites/props/banners/banner_hor/banner-hor2.png" id="3_gwqem"]
+[ext_resource type="Texture2D" uid="uid://cgsjhn6sx0lxu" path="res://src/assets/sprites/props/banners/cafe_bar/banner-hor1.png" id="2_ua2lp"]
+[ext_resource type="Texture2D" uid="uid://bnncewkxmckrt" path="res://src/assets/sprites/props/banners/cafe_bar/banner-hor2.png" id="3_gwqem"]
 [ext_resource type="Texture2D" uid="uid://c4oos55g8qew7" path="res://src/assets/sprites/props/banners/sushi/sushi-1.png" id="4_2w1a0"]
 [ext_resource type="Texture2D" uid="uid://cpwyiqe5jsrb1" path="res://src/assets/sprites/props/banners/sushi/sushi-2.png" id="5_5oc4o"]
 [ext_resource type="Texture2D" uid="uid://bmeno5v56wcvc" path="res://src/assets/sprites/props/banners/ethereum/ethereum-1.png" id="6_we5e6"]
