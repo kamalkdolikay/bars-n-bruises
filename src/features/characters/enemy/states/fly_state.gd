@@ -4,7 +4,7 @@ extends CharacterState
 @export var enemy: BaseEnemy
 
 func enter() -> void:
-	enemy.collision_shape.set_deferred("disabled", true)	
+	enemy.collision_shape.set_deferred("disabled", true)
 	enemy.play_animation((enemy.states[enemy.State.FLY]).to_lower())
 
 func update(_delta: float) -> void:
