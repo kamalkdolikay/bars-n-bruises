@@ -107,7 +107,7 @@ collectible_type = 1
 
 [node name="Barrel2" parent="Containers" index="1" instance=ExtResource("5_ok67v")]
 position = Vector2(1645, 246)
-collectible_type = 2
+collectible_type = 1
 
 [node name="Car" parent="Containers" index="2" instance=ExtResource("9_6fpta")]
 position = Vector2(335, 351)
@@ -116,7 +116,7 @@ position = Vector2(335, 351)
 position = Vector2(278, 246)
 
 [node name="StreetLight" parent="Containers" index="4" instance=ExtResource("11_xvkir")]
-position = Vector2(474, 350)
+position = Vector2(474, 353)
 
 [node name="Tree" parent="Containers" index="5" instance=ExtResource("12_kadwm")]
 position = Vector2(540, 352)
@@ -129,7 +129,7 @@ enemies = [NodePath("../../Checkpoints/Checkpoint2/Enemies/BossEnemy"), NodePath
 position = Vector2(2601, 53)
 
 [node name="PlayerSpawnLocation" parent="." index="6"]
-position = Vector2(1935, 286)
+position = Vector2(101, 276)
 
 [editable path="Checkpoints/Checkpoint"]
 [editable path="Checkpoints/Checkpoint2"]
