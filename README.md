@@ -17,13 +17,13 @@ In a world ruled by fear, gangs of delinquents oppress those who dare to treat a
 
 ## 🕹️ Controls
 
-| Action          | Key / Button       |
-|-----------------|--------------------|
-| Move            | Arrow Keys         |
-| Jump            | Spacebar           |
-| Attack          | X / C              |
-| Special Attack  | Z                  |
-| Pause / Menu    | Esc                |
+| Action         | Key / Button |
+| -------------- | ------------ |
+| Move           | Arrow Keys   |
+| Jump           | Spacebar     |
+| Attack         | X / C        |
+| Special Attack | Z            |
+| Pause / Menu   | Esc          |
 
 ## 🛠️ Installation
 
@@ -62,7 +62,7 @@ All contributions are licensed under the MIT License.
 
 - **Oonquil**: [Urban Brawlers](https://oonquil.itch.io/) (pixel art assets)
 - **Ansimuz**: [Streets of Fight](https://ansimuz.itch.io/streets-of-fight) (pixel art assets)
-- **Community**: Free and open pixel art assets from [itch.io](https://pixelkd.itch.io/bars-n-bruises) and the Godot community
+- **Community**: Free and open pixel art assets from [itch.io](https://itch.io) and the Godot community
 
 ## 📥 Play Now
 
@@ -72,6 +72,12 @@ Relive the arcade glory or fight pixelated injustice! Play **Bars n Bruises** on
 - **Web**: [Play in browser](https://itch.io/embed-upload/14489674?color=0f2dca)
 
 Ready to clean up the streets? No quarters needed!
+
+## 🌐 Visit on itch.io
+
+Check out the official **Bars n Bruises** page on itch.io for the latest updates, downloads, and community feedback:
+
+- [**Play on itch.io**](https://pixelkd.itch.io/bars-n-bruises)
 
 ## 📜 License
 
